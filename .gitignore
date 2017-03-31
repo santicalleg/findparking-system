@@ -1,5 +1,7 @@
 vendor/
 node_modules/
+/public/storage
+/storage/*.key
 
 # Laravel 4 specific
 bootstrap/compiled.php
@@ -10,6 +12,11 @@ bootstrap/cache/
 .env.*.php
 .env.php
 .env
+Homestead.json
+Homestead.yaml
 
 # Rocketeer PHP task runner and deployment package. https://github.com/rocketeers/rocketeer
 .rocketeer/
+
+#IDEA IDE
+.idea

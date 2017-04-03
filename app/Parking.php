@@ -10,7 +10,8 @@ class Parking extends Model
     protected $fillable = [
         'parking_id', 
         'parking_username', 
-        'nit', 'phone_number', 
+        'nit', 
+        'phone_number', 
         'latitude', 
         'longitude', 
         'address', 

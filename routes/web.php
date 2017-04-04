@@ -16,6 +16,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('brand/index', function() {
-	return view('brand/index');
-});
+/*Brands*/
+Route::get('brand', 'BrandController@index');
+
+Route::get('brand/create', 'BrandController@create');
+Route::post('brand', 'BrandController@store');
+
+Route::get('brand/{id}', 'BrandController@show')->where('id', '[0-9]+');

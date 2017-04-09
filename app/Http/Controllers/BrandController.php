@@ -25,11 +25,17 @@ class BrandController extends Controller
     	return view('brand/create');
     }
 
-    public function store(Brand $brand)
+    public function store()
     {
+        //validate data request
+        $this->validate(request(), [
+            'brand_name' => ['required', 'max:200']
+        ]);
+
     	$data = request()->all();
     	Brand::Create($data);
 
-    	dd($brand);
+    	//$dd(data);
+        return redirect()->to('brand');
     }
 }

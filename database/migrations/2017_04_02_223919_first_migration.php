@@ -91,11 +91,13 @@ class FirstMigration extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('slot');
+        Schema::dropIfExists('parking');
+        Schema::dropIfExists('vehicle');
         Schema::dropIfExists('administrator');
         Schema::dropIfExists('brand');
         Schema::dropIfExists('color');
-        Schema::dropIfExists('vehicle');
         Schema::dropIfExists('vehicle_type');
-        Schema::dropIfExists('slot');
+
     }
 }

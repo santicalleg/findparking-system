@@ -12,10 +12,12 @@
 	<ul>
 		@foreach ($brands as $brand)
 		<li>
-			{{ $brand->brand_name}}
+			{{ $brand->brand_name }}
 		</li>
 		@endforeach
 	</ul>
+	
+	{{ $brands->links() }}
 
 </div>
 

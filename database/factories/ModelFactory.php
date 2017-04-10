@@ -22,3 +22,9 @@ $factory->define(findparking\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(findparking\Brand::class, function(Faker\Generator $faker) {
+	return [
+		'brand_name' => $faker->name
+	];
+});

@@ -18,8 +18,10 @@ Route::get('/', function () {
 
 /*Brands*/
 Route::get('brand', 'BrandController@index');
+Route::get('brand/show/{id}', 'BrandController@show')->where('id', '[0-9]+');
 
 Route::get('brand/create', 'BrandController@create');
-Route::post('brand', 'BrandController@store');
+Route::post('brand/store', 'BrandController@store');
 
-Route::get('brand/{id}', 'BrandController@show')->where('id', '[0-9]+');
+Route::get('brand/edit/{id}', 'BrandController@edit')->where('id', '[0-9]+');
+Route::post('brand/update/{id}', 'BrandController@update')->where('id', '[0-9]+');

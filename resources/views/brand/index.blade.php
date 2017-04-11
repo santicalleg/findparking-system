@@ -14,6 +14,7 @@
 		<li>
 			<span>{{ $brand->brand_name }}</span>
 			<a href="/brand/edit/{{ $brand->brand_id }}">Edit</a>
+			<a href="/brand/delete/{{ $brand->brand_id }}">Edit</a>
 		</li>
 		@endforeach
 	</ul>

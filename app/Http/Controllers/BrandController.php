@@ -61,4 +61,9 @@ class BrandController extends Controller
 
         return redirect()->to('brand');
     }
+
+    public function delete($id)
+    {
+        
+    }
 }

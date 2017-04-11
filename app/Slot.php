@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Slot extends Model
 {
     //
+    protected $table = 'slot';
+    protected $primaryKey = 'slot_id';
+
     protected $fillable = [
         'slot_id', 
         'slot_number', 

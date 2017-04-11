@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Parking extends Model
 {
     //
+    protected $table = 'parking';
+    protected $primaryKey = 'parking_id';
+
     protected $fillable = [
         'parking_id', 
         'parking_username', 

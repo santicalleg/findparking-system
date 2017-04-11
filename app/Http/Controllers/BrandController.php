@@ -2,6 +2,8 @@
 
 namespace findparking\Http\Controllers;
 
+use Session;
+use Exception;
 use findparking\Brand;
 use Illuminate\Http\Request;
 
@@ -17,7 +19,7 @@ class BrandController extends Controller
 
     public function show($id)
     {
-        $brand = Brand::where('brand_id', $id)->first();
+        $brand = Brand::find($id);
     	dd($brand);
     }
 
@@ -26,18 +28,26 @@ class BrandController extends Controller
     	return view('brand/create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        //validate data request
-        $this->validate(request(), [
-            'brand_name' => ['required', 'max:200']
-        ]);
+        try
+        {
+            //validate data request
+            $this->validate($request, [
+                'brand_name' => ['required', 'max:200']
+            ]);
 
-    	$data = request()->all();
-    	Brand::Create($data);
+        	$data = $request->all();
+        	Brand::Create($data);
 
-    	//$dd(data);
-        return redirect()->to('brand');
+            Session::flash('message', 'Successfully created brand!');
+            return redirect()->to('brand');
+        }
+        catch(Exception $e)
+        {
+            return redirect()->route('brand.create')
+                    ->withErrors("Faltal error - ".$e->getMessage());
+        }
     }
 
     public function edit($id)
@@ -47,23 +57,45 @@ class BrandController extends Controller
         return view('brand/edit', compact('brand'));
     }
 
-    public function update($id)
+    public function update(Request $request, $id)
     {
-        //validate data request
-        $this->validate(request(), [
-            'brand_name' => ['required', 'max:200']
-        ]);
+        try
+        {
+            //validate data request
+            $this->validate($request, [
+                'brand_name' => ['required', 'max:200']
+            ]);
 
-        $brand = Brand::find($id);
+            $brand = Brand::find($id);
 
-        $brand->brand_name = request()->input('brand_name');
-        $brand->save();
+            $brand->brand_name = $request->input('brand_name');
+            $brand->save();
 
-        return redirect()->to('brand');
+            Session::flash('message', 'Successfully updated brand!');
+            return redirect()->to('brand');
+        }
+        catch(Exception $e)
+        {
+            return redirect()->route('brand.create')
+                    ->withErrors("Faltal error - ".$e->getMessage());
+        }
     }
 
-    public function delete($id)
+    public function destroy($id)
     {
-        
+        try
+        {
+            $brand = Brand::find($id);
+
+            $brand->delete();
+
+            Session::flash('message', 'Successfully deleted brand!');
+            return redirect()->route('brand.index');
+        }
+        catch(Exception $e)
+        {
+            return redirect()->route('brand.index')
+                    ->withErrors("Faltal error - ".$e->getMessage());
+        }
     }
 }

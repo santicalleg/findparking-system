@@ -15,13 +15,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+/*Brand*/
 
-/*Brands*/
-Route::get('brand', 'BrandController@index');
-Route::get('brand/show/{id}', 'BrandController@show')->where('id', '[0-9]+');
+//Route::resource('brand', 'BrandController');
 
-Route::get('brand/create', 'BrandController@create');
-Route::post('brand/store', 'BrandController@store');
+Route::get('brand', 'BrandController@index')->name('brand.index');
+Route::get('brand/show/{id}', 'BrandController@show')->where('id', '[0-9]+')->name('brand.show');
 
-Route::get('brand/edit/{id}', 'BrandController@edit')->where('id', '[0-9]+');
-Route::post('brand/update/{id}', 'BrandController@update')->where('id', '[0-9]+');
+Route::get('brand/create', 'BrandController@create')->name('brand.create');
+Route::post('brand/store', 'BrandController@store')->name('brand.store');
+
+Route::get('brand/edit/{id}', 'BrandController@edit')->where('id', '[0-9]+')->name('brand.edit');
+Route::put('brand/update/{id}', 'BrandController@update')->where('id', '[0-9]+')->name('brand.update');
+
+Route::delete('brand/destroy/{id}', 'BrandController@destroy')->where('id', '[0-9]+')->name('brand.destroy');

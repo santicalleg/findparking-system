@@ -1,9 +1,11 @@
 # findparking-system
 This project is built for Jaime's tesis
 
-Use node.js 7.x or later
+# Requirements
 
-Commands:
+node.js 7.x or later
+
+# Commands:
 
 # Run migrate files to create tables in database
 php artisan migrate:refresh
@@ -12,7 +14,7 @@ php artisan migrate:refresh
 php artisan migrate:refresh --seed
 
 
-#Install all package dependencies
+# Install all package dependencies
 npm install
 
 npm run dev

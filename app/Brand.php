@@ -8,6 +8,7 @@ class Brand extends Model
 {
     //
 	protected $table = 'brand';
+    protected $primaryKey = 'brand_id';
 
     protected $fillable = [
         'brand_id', 

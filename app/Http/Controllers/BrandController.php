@@ -42,8 +42,7 @@ class BrandController extends Controller
 
     public function edit($id)
     {
-        //TODO: Fix issue with find eloquent property, it cannot find brand_id property name, it searches like brand.id
-        $brand = Brand::where('brand_id', $id)->first();
+        $brand = Brand::find($id);
 
         return view('brand/edit', compact('brand'));
     }
@@ -55,9 +54,8 @@ class BrandController extends Controller
             'brand_name' => ['required', 'max:200']
         ]);
 
-        $brand = Brand::where('brand_id', $id)->first();
+        $brand = Brand::find($id);
 
-        //TODO: Fix issue to update a record
         $brand->brand_name = request()->input('brand_name');
         $brand->save();
 

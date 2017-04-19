@@ -9,7 +9,7 @@
 	@endif
 
 	<p>
-		<a class="btn btn-primary" href="/brand/create">Crear marca</a>
+		<a class="btn btn-primary" href="{{ route('brand.create') }}">Crear marca</a>
 	</p>
   <div class="table-responsive">
             
@@ -27,9 +27,9 @@
                   <tr>
                     <td>{{ $brand->brand_id }}</td>
                     <td>{{ $brand->brand_name }}</td>
-                    <td><a href="/brand/edit/{{ $brand->brand_id }}" class="btn btn-info">Editar</a></td>
+                    <td><a href="{{ route('brand.edit', [$brand->brand_id]) }}" class="btn btn-info">Editar</a></td>
                     <td>
-                        <form method="POST" action="/brand/destroy/{{ $brand->brand_id }}">
+                        <form method="POST" action="{{ route('brand.destroy', [$brand->brand_id]) }}">
                           <input type="hidden" name="_token" value={{ csrf_token() }}>
                           <input type="hidden" name="_method" value="DELETE">
                           <button type="submit" class="btn btn-danger">Eliminar</button>

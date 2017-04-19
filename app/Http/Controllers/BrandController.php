@@ -41,7 +41,7 @@ class BrandController extends Controller
         	Brand::Create($data);
 
             Session::flash('message', 'Successfully created brand!');
-            return redirect()->to('brand');
+            return redirect()->route('brand.index');
         }
         catch(Exception $e)
         {
@@ -72,11 +72,11 @@ class BrandController extends Controller
             $brand->save();
 
             Session::flash('message', 'Successfully updated brand!');
-            return redirect()->to('brand');
+            return redirect()->route('brand.index');
         }
         catch(Exception $e)
         {
-            return redirect()->route('brand.create')
+            return redirect()->route('brand.edit')
                     ->withErrors("Faltal error - ".$e->getMessage());
         }
     }

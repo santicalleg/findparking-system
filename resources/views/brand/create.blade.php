@@ -8,7 +8,7 @@
 	
 	@include('partials/errors')
 
-	<form method="POST" action="/brand/store">
+	<form method="POST" action="{{ route('brand.store') }}">
 		{{ csrf_field() }}
 		<input type="text" name="brand_name" value="{{ old('brand_name') }}" />
 		<button type="submit">Create a brand</button>

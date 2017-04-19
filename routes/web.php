@@ -11,21 +11,37 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// /*Brand*/
+
+// Route::get('brand', 'BrandController@index')->name('brand.index');
+// Route::get('brand/show/{id}', 'BrandController@show')->where('id', '[0-9]+')->name('brand.show');
+
+// Route::get('brand/create', 'BrandController@create')->name('brand.create');
+// Route::post('brand/store', 'BrandController@store')->name('brand.store');
+
+// Route::get('brand/edit/{id}', 'BrandController@edit')->where('id', '[0-9]+')->name('brand.edit');
+// Route::put('brand/update/{id}', 'BrandController@update')->where('id', '[0-9]+')->name('brand.update');
+
+// Route::delete('brand/destroy/{id}', 'BrandController@destroy')->where('id', '[0-9]+')->name('brand.destroy');
+// Auth::routes();
+
+// Route::get('/home', 'HomeController@index');
+
+
 Route::get('/', function () {
-    return view('welcome');
+   	return view('welcome');
 });
 
-/*Brand*/
+Route::auth();
 
-//Route::resource('brand', 'BrandController');
+Route::get('/home', 'HomeController@index');
 
-Route::get('brand', 'BrandController@index')->name('brand.index');
-Route::get('brand/show/{id}', 'BrandController@show')->where('id', '[0-9]+')->name('brand.show');
-
-Route::get('brand/create', 'BrandController@create')->name('brand.create');
-Route::post('brand/store', 'BrandController@store')->name('brand.store');
-
-Route::get('brand/edit/{id}', 'BrandController@edit')->where('id', '[0-9]+')->name('brand.edit');
-Route::put('brand/update/{id}', 'BrandController@update')->where('id', '[0-9]+')->name('brand.update');
-
-Route::delete('brand/destroy/{id}', 'BrandController@destroy')->where('id', '[0-9]+')->name('brand.destroy');
+Route::prefix('admin')->group(function() {
+	Route::get('/', 'AdministratorController@index')->name('admin.dashboard');
+	Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+	Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login');
+});

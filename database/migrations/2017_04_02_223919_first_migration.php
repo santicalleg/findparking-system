@@ -15,10 +15,12 @@ class FirstMigration extends Migration
     {
         Schema::create('administrator', function (Blueprint $table) {
             $table->increments('administrator_id');
-            $table->string('administrator_username');
-            $table->string('password_hash');
+            $table->string('name');
             $table->string('administrator_first_name');
             $table->string('administrator_last_name');
+            $table->string('email')->index();
+            $table->string('password');
+            $table->rememberToken();
             $table->timestamps();
         });
 

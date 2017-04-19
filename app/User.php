@@ -9,6 +9,7 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    public $table = 'user';
     protected $primaryKey = 'user_id';
 
     /**
@@ -18,12 +19,12 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'user_id',
-        'username', 
+        'name', 
         'first_name', 
         'last_name', 
         'email', 
         'mobile_number', 
-        'password_hash'
+        'password'
     ];
 
     /**
@@ -32,7 +33,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password_hash', 'remember_token',
+        'password', 'remember_token',
     ];
 
     public function vehicles()

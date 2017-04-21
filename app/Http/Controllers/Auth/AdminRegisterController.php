@@ -2,12 +2,13 @@
 
 namespace findparking\Http\Controllers\Auth;
 
-use findparking\User;
+use findparking\Administrator;
 use findparking\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-class RegisterController extends Controller
+class AdminRegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------
@@ -27,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin';
 
     /**
      * Create a new controller instance.
@@ -36,7 +37,12 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:admin');
+    }
+
+    public function showRegistrationForm()
+    {
+        return view('auth.admin-register');
     }
 
     /**
@@ -49,8 +55,8 @@ class RegisterController extends Controller
     {
         return Validator::make($data, [
             'name' => 'required|max:255',
-            'first_name' => 'required|max:255',
-            'last_name' => 'required|max:255',
+            'administrator_first_name' => 'required|max:255',
+            'administrator_last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:user',
             'password' => 'required|min:6|confirmed',
         ]);
@@ -60,23 +66,21 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return User
+     * @return Admin
      */
     protected function create(array $data)
     {
-        $mobile = $data['mobile_number'];
-        if ($mobile === NULL)
-        {
-            $mobile = "000";
-        }
-
-        return User::create([
+        return Administrator::create([
             'name' => $data['name'],
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'mobile_number' => $mobile,
+            'administrator_first_name' => $data['administrator_first_name'],
+            'administrator_last_name' => $data['administrator_last_name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 }

@@ -5,9 +5,9 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
+                <div class="panel-heading">Admin Registration</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ route('admin.register') }}">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -38,43 +38,29 @@
                             </div>
                         </div>
                         
-                        <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                            <label for="first_name" class="col-md-4 control-label">First Name</label>
+                        <div class="form-group{{ $errors->has('administrator_first_name') ? ' has-error' : '' }}">
+                            <label for="administrator_first_name" class="col-md-4 control-label">First Name</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control" name="first_name" value="{{ old('first_name') }}" required>
+                                <input id="administrator_first_name" type="text" class="form-control" name="administrator_first_name" value="{{ old('administrator_first_name') }}" required>
 
-                                @if ($errors->has('first_name'))
+                                @if ($errors->has('administrator_first_name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('first_name') }}</strong>
+                                        <strong>{{ $errors->first('administrator_first_name') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                            <label for="last_name" class="col-md-4 control-label">Last Name</label>
+                        <div class="form-group{{ $errors->has('administrator_last_name') ? ' has-error' : '' }}">
+                            <label for="administrator_last_name" class="col-md-4 control-label">Last Name</label>
 
                             <div class="col-md-6">
-                                <input id="last_name" type="text" class="form-control" name="last_name" value="{{ old('last_name') }}" required>
+                                <input id="administrator_last_name" type="text" class="form-control" name="administrator_last_name" value="{{ old('administrator_last_name') }}" required>
 
-                                @if ($errors->has('last_name'))
+                                @if ($errors->has('administrator_last_name'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('mobile_number') ? ' has-error' : '' }}">
-                            <label for="mobile_number" class="col-md-4 control-label">Mobile</label>
-
-                            <div class="col-md-6">
-                                <input id="mobile_number" type="text" class="form-control" name="mobile_number" value="{{ old('mobile_number') }}">
-
-                                @if ($errors->has('mobile_number'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('mobile_number') }}</strong>
+                                        <strong>{{ $errors->first('administrator_last_name') }}</strong>
                                     </span>
                                 @endif
                             </div>

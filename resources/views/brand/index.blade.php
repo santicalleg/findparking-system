@@ -1,8 +1,8 @@
 @extends('layout')
 
 @section('content')
+
 <!--<div class="row placeholders">-->
-	<h1 class="page-header">Crear marca</h1>
 	<!-- will be used to show any messages -->
 	@if (Session::has('message'))
     	<div class="alert alert-info">{{ Session::get('message') }}</div>

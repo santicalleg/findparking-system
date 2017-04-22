@@ -40,4 +40,16 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function() {
 	Route::put('/brand/update/{id}', 'BrandController@update')->where('id', '[0-9]+')->name('brand.update');
 
 	Route::delete('/brand/destroy/{id}', 'BrandController@destroy')->where('id', '[0-9]+')->name('brand.destroy');
+
+	/*Parking*/
+	Route::get('/parking', 'ParkingController@index')->name('parking.index');
+	Route::get('/parking/show/{id}', 'ParkingController@show')->where('id', '[0-9]+')->name('parking.show');
+
+	Route::get('/parking/create', 'ParkingController@create')->name('parking.create');
+	Route::post('/parking/store', 'ParkingController@store')->name('parking.store');
+
+	Route::get('/parking/edit/{id}', 'ParkingController@edit')->where('id', '[0-9]+')->name('parking.edit');
+	Route::put('/parking/update/{id}', 'ParkingController@update')->where('id', '[0-9]+')->name('parking.update');
+
+	Route::delete('/parking/destroy/{id}', 'ParkingController@destroy')->where('id', '[0-9]+')->name('parking.destroy');
 });

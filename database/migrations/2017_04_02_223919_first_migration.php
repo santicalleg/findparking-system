@@ -44,12 +44,14 @@ class FirstMigration extends Migration
 
         Schema::create('parking', function (Blueprint $table) {
             $table->increments('parking_id');
-            $table->string('parking_username');
+            $table->string('parking_name');
             $table->string('nit');
             $table->string('phone_number');
             $table->string('latitude');
             $table->string('longitude');
             $table->string('address');
+            $table->string('services');
+            $table->string('schedule');
             $table->integer('administrator_id')->unsigned();
 
             $table->foreign('administrator_id')->references('administrator_id')->on('administrator');

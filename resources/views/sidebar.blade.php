@@ -33,6 +33,7 @@
             <!-- Optionally, you can add icons to the links -->
             <li class="active"><a href="{{ route('admin.dashboard') }}"><span>Home</span></a></li>
             <li><a href="{{ route('brand.index') }}"><span>Marcas</span></a></li>
+            <li><a href="{{ route('parking.index') }}"><span>Estacionamientos</span></a></li>
             <li class="treeview">
                 <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

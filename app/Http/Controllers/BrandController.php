@@ -30,13 +30,13 @@ class BrandController extends Controller
 
     public function store(Request $request)
     {
+        //validate data request
+        $this->validate($request, [
+            'brand_name' => 'required'
+        ]);
+
         try
         {
-            //validate data request
-            $this->validate($request, [
-                'brand_name' => ['required', 'max:200']
-            ]);
-
         	$data = $request->all();
         	Brand::Create($data);
 
@@ -59,13 +59,13 @@ class BrandController extends Controller
 
     public function update(Request $request, $id)
     {
+        //validate data request
+        $this->validate($request, [
+            'brand_name' => ['required', 'max:200']
+        ]);
+
         try
         {
-            //validate data request
-            $this->validate($request, [
-                'brand_name' => ['required', 'max:200']
-            ]);
-
             $brand = Brand::find($id);
 
             $brand->brand_name = $request->input('brand_name');

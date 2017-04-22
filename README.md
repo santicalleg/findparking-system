@@ -1,5 +1,5 @@
 # findparking-system
-This project is built for Jaime's tesis
+Findparking is a project to car or motorcycle drivers that need to find a free slot parking. Drivers can search the registered parkings and notify if the parking has free slots or if where the driver slot is busy.
 
 # Requirements
 

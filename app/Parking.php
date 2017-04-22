@@ -12,12 +12,14 @@ class Parking extends Model
 
     protected $fillable = [
         'parking_id', 
-        'parking_username', 
+        'parking_name', 
         'nit', 
         'phone_number', 
         'latitude', 
-        'longitude', 
+        'longitude',
         'address', 
+        'services',
+        'schedule',
         'administrator_id'
     ];
 

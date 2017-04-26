@@ -55,7 +55,7 @@
     <!-- /.social-auth-links -->
 
     <a href="{{ route('password.request') }}">Recordar contraseña</a><br> 
-    
+     <a href="{{ route('admin.register') }}" class="text-center">Registrarse</a>
 
   </div>
   <!-- /.login-box-body -->

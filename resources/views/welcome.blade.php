@@ -41,12 +41,23 @@
                 top: 18px;
             }
 
+            .bottom-right {
+                position: absolute;
+                right: 10px;
+                bottom: 18px;
+            }
+
             .content {
                 text-align: center;
             }
 
             .title {
                 font-size: 84px;
+            }
+            
+            .pharagrap {
+                padding: 0 100px;
+                text-align: justify;
             }
 
             .links > a {
@@ -71,25 +82,27 @@
                     @if (Auth::check())
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ url('/login') }}">Login</a>
-                        <a href="{{ url('/register') }}">Register</a>
+                        <a href="{{ url('/login') }}">Ingresar</a>
+                        <a href="{{ url('/register') }}">Registrate</a>
                     @endif
                 </div>
             @endif
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    FindParking
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+                <div class="pharagrap">
+                    <label>
+                        Este proyecto surgió como idea de emprendimiento al ver que la ciudad está cada vez más congestionada, y que los lugares de estacionamiento en centros comerciales o parqueaderos cercanos a sitios de alto interés no dan abasto en determinados momentos del día, y además de esto existen lugares donde se parquean vehículos sin parecer parqueaderos, así que no se ocupan por desconocimiento, también surgió la idea por la necesidad de ahorrar tiempo buscando donde estacionar y encontrar un lugar que cumpla con las expectativas de los usuarios.
+                    </label>
                 </div>
             </div>
+
+            <div class="bottom-right links">
+                    <a href="{{ url('admin/login') }}">Administrador</a>
+                </div>            
         </div>
     </body>
 </html>

@@ -56,8 +56,13 @@
             }
             
             .pharagrap {
-                padding: 0 100px;
+                padding: 0 30px;
                 text-align: justify;
+            }
+
+            .pharagrap label{
+                font-weight: 700;
+                font-size: 12px;
             }
 
             .links > a {
@@ -72,6 +77,12 @@
 
             .m-b-md {
                 margin-bottom: 30px;
+            }
+
+            @media (max-width: 600px) {
+                .title {
+                    font-size: 50px;
+                }
             }
         </style>
     </head>
@@ -90,7 +101,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    FindParking
+                    Find Parking
                 </div>
 
                 <div class="pharagrap">

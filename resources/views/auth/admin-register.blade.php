@@ -31,7 +31,7 @@
         @endif
       </div>
       <div class="form-group has-feedback">
-        <input id="administrator_first_name" type="text" class="form-control" placeholder="Primer Nombre" name="administrator_first_name" value="{{ old('administrator_first_name') }}" required>
+        <input id="administrator_first_name" type="text" class="form-control" placeholder="Nombres" name="administrator_first_name" value="{{ old('administrator_first_name') }}" required>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
         @if ($errors->has('administrator_first_name'))
             <span class="help-block">
@@ -40,7 +40,7 @@
         @endif
       </div>
       <div class="form-group has-feedback">
-        <input id="administrator_last_name" type="text" class="form-control" placeholder="Segundo Nombre" name="administrator_last_name" value="{{ old('administrator_last_name') }}" required>
+        <input id="administrator_last_name" type="text" class="form-control" placeholder="Apellidos" name="administrator_last_name" value="{{ old('administrator_last_name') }}" required>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
         @if ($errors->has('administrator_last_name'))
             <span class="help-block">
@@ -49,7 +49,7 @@
         @endif
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Contraseña">
+        <input type="password" class="form-control" name="password" placeholder="Contraseña">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         @if ($errors->has('password'))
             <span class="help-block">

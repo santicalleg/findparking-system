@@ -31,7 +31,7 @@
         @endif
       </div>
       <div class="form-group has-feedback">
-        <input id="first_name" type="text" class="form-control" placeholder="Primer Nombre" name="first_name" value="{{ old('first_name') }}" required>
+        <input id="first_name" type="text" class="form-control" placeholder="Nombres" name="first_name" value="{{ old('first_name') }}" required>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
         @if ($errors->has('first_name'))
             <span class="help-block">
@@ -40,7 +40,7 @@
         @endif
       </div>
       <div class="form-group has-feedback">
-        <input id="last_name" type="text" class="form-control" placeholder="Segundo Nombre" name="last_name" value="{{ old('last_name') }}" required>
+        <input id="last_name" type="text" class="form-control" placeholder="Apellidos" name="last_name" value="{{ old('last_name') }}" required>
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
         @if ($errors->has('last_name'))
             <span class="help-block">
@@ -58,7 +58,7 @@
         @endif
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Contraseña">
+        <input type="password" class="form-control" name="password" placeholder="Contraseña">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
         @if ($errors->has('password'))
             <span class="help-block">

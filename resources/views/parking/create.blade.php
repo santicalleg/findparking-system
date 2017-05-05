@@ -41,6 +41,11 @@
 		</fieldset>
 
 		<fieldset class="form-group">
+			<label>Cantidad de espacios</label>
+			<input class="form-control" type="text" name="quantity_slots" value="{{ old('quantity_slots') }}" />
+		</fieldset>
+
+		<fieldset class="form-group">
 			<label>Servicios</label>
 			<input class="form-control" type="text" name="services" value="{{ old('services') }}" />
 		</fieldset>

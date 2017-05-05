@@ -12,7 +12,7 @@ class Slot extends Model
 
     protected $fillable = [
         'slot_id', 
-        'slot_number', 
+        'name', 
         'vehicle_id', 
         'parking_id'
     ];

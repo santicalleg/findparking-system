@@ -77,8 +77,8 @@ class FirstMigration extends Migration
 
         Schema::create('slot', function (Blueprint $table) {
             $table->increments('slot_id');
-            $table->integer('slot_number');
-            $table->integer('vehicle_id')->unsigned();
+            $table->string('name');
+            $table->integer('vehicle_id')->unsigned()->nullable();
             $table->integer('parking_id')->unsigned();
 
             $table->foreign('vehicle_id')->references('vehicle_id')->on('vehicle');

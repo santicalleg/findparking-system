@@ -28,3 +28,15 @@ $factory->define(findparking\Brand::class, function(Faker\Generator $faker) {
 		'brand_name' => $faker->name
 	];
 });
+
+$factory->define(findparking\Administrator::class, function(Faker\Generator $faker) {
+    static $password;
+
+    return [
+        'administrator_first_name' => $faker->name, 
+        'administrator_last_name' => $faker->lastName,
+        'name' => $faker->userName,
+        'email' => $faker->unique()->safeEmail,
+        'password' => $password ?: $password = bcrypt('12345678')
+    ];
+});

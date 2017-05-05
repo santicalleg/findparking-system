@@ -4,6 +4,7 @@ namespace findparking\Http\Controllers;
 
 use Session;
 use Exception;
+use findparking\Slot;
 use findparking\Parking;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -36,7 +37,8 @@ class ParkingController extends Controller
 			'phone_number' => 'required|numeric|digits_between:7,20',
 			'latitude' => 'required|max:200',
 			'longitude' => 'required|max:200',
-			'address' => 'required|max:200'
+			'address' => 'required|max:200',
+            'quantity_slots' => 'required|numeric|min:1'
 		]);
 
 		try
@@ -46,6 +48,20 @@ class ParkingController extends Controller
     		$parking->administrator_id = Auth::user()->administrator_id;
 
     		$parking->save();
+
+            $quantity = $request->input('quantity_slots');
+            $slots = array();
+
+            for ($i=1; $i <=$quantity ; $i++) { 
+                $slot = new Slot;
+                $slot->name = "A" . $i;
+                $slot->parking_id = $parking->parking_id;
+                $slots[] = $slot;
+            }
+
+            //$parking->slots()->saveMany($slots);
+            //$parking->save();  
+            Slot::insert($slots);
 
     		Session::flash('message', 'Se ha creado satisfactoriamente!');
 

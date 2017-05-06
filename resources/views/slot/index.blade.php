@@ -9,7 +9,7 @@
 	@endif
 
 	<p>
-		<a class="btn btn-primary" href="{{ route('parking.create') }}">Crear Estacionamiento</a>
+		<a class="btn btn-primary" href="{{ route('slot.create') }}">Crear Espacio</a>
 	</p>
   <div class="table-responsive">
 
@@ -18,19 +18,19 @@
                 <tr>
                   <th>#</th>
                   <th>Nombre</th>
-                  <th>Nit</th>
                   <th colspan="2">Acciones</th>
                 </tr>
               </thead>
               <tbody>
-			          @foreach ($parkings as $parking)
+			          @foreach ($slots as $slot)
                   <tr>
-                    <td>{{ $parking->id }}</td>
-                    <td>{{ $parking->parking_name }}</td>
-                    <td>{{ $parking->nit }}</td>
-                    <td><a href="{{ route('parking.edit', [$parking->id]) }}" class="btn btn-info">Editar</a></td>
+                    <td>{{ $slot->id }}</td>
+                    <td>{{ $slot->name }}</td>
                     <td>
-                        <form method="POST" action="{{ route('parking.destroy', [$parking->id]) }}">
+                      <a href="{{ route('slot.edit', [$slot->id]) }}" class="btn btn-info">Editar</a>
+                    </td>
+                    <td>
+                        <form method="POST" action="{{ route('slot.destroy', [$slot->id]) }}">
                           <input type="hidden" name="_token" value={{ csrf_token() }}>
                           <input type="hidden" name="_method" value="DELETE">
                           <button type="submit" class="btn btn-danger">Eliminar</button>
@@ -42,7 +42,7 @@
               </tbody>
   </table>
 	 </div>
-	{{ $parkings->links() }}
+	{{ $slots->links() }}
 <!--</div>-->
 
 

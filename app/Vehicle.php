@@ -8,10 +8,9 @@ class Vehicle extends Model
 {
     //
     protected $table = 'vehicle';
-    protected $primaryKey = 'vehicle_id';
     
     protected $fillable = [
-        'vehicle_id', 
+        'id', 
         'last_digit', 
         'color_id', 
         'brand_id', 

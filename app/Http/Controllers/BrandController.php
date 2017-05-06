@@ -40,7 +40,7 @@ class BrandController extends Controller
         	$data = $request->all();
         	Brand::Create($data);
 
-            Session::flash('message', 'Successfully created brand!');
+            Session::flash('message', 'Se ha creado satisfactoriamente!');
             return redirect()->route('brand.index');
         }
         catch(Exception $e)
@@ -71,7 +71,7 @@ class BrandController extends Controller
             $brand->brand_name = $request->input('brand_name');
             $brand->save();
 
-            Session::flash('message', 'Successfully updated brand!');
+            Session::flash('message', 'Se ha actualizado satisfactoriamente!');
             return redirect()->route('brand.index');
         }
         catch(Exception $e)
@@ -89,7 +89,7 @@ class BrandController extends Controller
 
             $brand->delete();
 
-            Session::flash('message', 'Successfully deleted brand!');
+            Session::flash('message', 'Se ha eliminado satisfactoriamente!');
             return redirect()->route('brand.index');
         }
         catch(Exception $e)

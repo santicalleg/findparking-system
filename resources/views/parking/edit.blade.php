@@ -8,7 +8,7 @@
 	
 	@include('partials/errors')
 
-	<form method="POST" action="{{ route('parking.update', [$parking->parking_id]) }}">
+	<form method="POST" action="{{ route('parking.update', [$parking->id]) }}">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="hidden" name="_method" value="PUT">
 
@@ -40,6 +40,11 @@
 		<fieldset class="form-group">
 			<label>Dirección</label>
 			<input class="form-control" type="text" name="address" value="{{ $parking->address }}" />
+		</fieldset>
+
+		<fieldset class="form-group">
+			<label>Cantidad de espacios</label>
+			<input class="form-control" type="text" name="quantity_slots" value="{{ $parking->slots()->count() }}" />
 		</fieldset>
 
 		<fieldset class="form-group">

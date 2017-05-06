@@ -8,11 +8,10 @@ class Slot extends Model
 {
     //
     protected $table = 'slot';
-    protected $primaryKey = 'slot_id';
-
+    
     protected $fillable = [
-        'slot_id', 
-        'name', 
+        'id', 
+        'slot_name', 
         'vehicle_id', 
         'parking_id'
     ];

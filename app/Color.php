@@ -8,10 +8,9 @@ class Color extends Model
 {
     //
     protected $table = 'color';
-	protected $primaryKey = 'color_id';
-
+	
     protected $fillable = [
-        'color_id', 
+        'id', 
         'color_name'
     ];
 

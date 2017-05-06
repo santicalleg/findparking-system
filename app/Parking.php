@@ -8,10 +8,9 @@ class Parking extends Model
 {
     //
     protected $table = 'parking';
-    protected $primaryKey = 'parking_id';
-
+    
     protected $fillable = [
-        'parking_id', 
+        'id', 
         'parking_name', 
         'nit', 
         'phone_number', 

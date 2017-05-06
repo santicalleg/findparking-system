@@ -25,11 +25,11 @@
               <tbody>
 			          @foreach ($brands as $brand)
                   <tr>
-                    <td>{{ $brand->brand_id }}</td>
+                    <td>{{ $brand->id }}</td>
                     <td>{{ $brand->brand_name }}</td>
-                    <td><a href="{{ route('brand.edit', [$brand->brand_id]) }}" class="btn btn-info">Editar</a></td>
+                    <td><a href="{{ route('brand.edit', [$brand->id]) }}" class="btn btn-info">Editar</a></td>
                     <td>
-                        <form method="POST" action="{{ route('brand.destroy', [$brand->brand_id]) }}">
+                        <form method="POST" action="{{ route('brand.destroy', [$brand->id]) }}">
                           <input type="hidden" name="_token" value={{ csrf_token() }}>
                           <input type="hidden" name="_method" value="DELETE">
                           <button type="submit" class="btn btn-danger">Eliminar</button>

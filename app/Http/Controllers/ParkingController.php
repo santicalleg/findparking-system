@@ -44,24 +44,19 @@ class ParkingController extends Controller
 		try
     	{
     		$data = $request->all();
-    		$parking = new Parking($data);
-    		$parking->administrator_id = Auth::user()->administrator_id;
-
-    		$parking->save();
-
             $quantity = $request->input('quantity_slots');
-            $slots = array();
 
-            for ($i=1; $i <=$quantity ; $i++) { 
+    		$parking = new Parking($data);
+    		$parking->administrator_id = Auth::user()->id;
+    		$parking->save();
+            
+            for ($i=1; $i <=$quantity ; $i++) {
                 $slot = new Slot;
                 $slot->name = "A" . $i;
-                $slot->parking_id = $parking->parking_id;
-                $slots[] = $slot;
-            }
+                $slot->parking_id = $parking->id;
 
-            //$parking->slots()->saveMany($slots);
-            //$parking->save();  
-            Slot::insert($slots);
+                $slot->save();
+            }
 
     		Session::flash('message', 'Se ha creado satisfactoriamente!');
 
@@ -89,11 +84,13 @@ class ParkingController extends Controller
 			'phone_number' => 'required|numeric|digits_between:7,20',
 			'latitude' => 'required|max:200',
 			'longitude' => 'required|max:200',
-			'address' => 'required|max:200'
+			'address' => 'required|max:200',
+            'quantity_slots' => 'required|numeric|min:1'
 		]);
 
 		try
     	{
+            $quantity = $request->input('quantity_slots');
     		$parking = Parking::find($id);
 
     		$parking->parking_name = $request->input('parking_name');
@@ -106,6 +103,18 @@ class ParkingController extends Controller
     		$parking->schedule = $request->input('schedule');
 
     		$parking->save();
+
+            if ($parking->slots()->count() != $quantity && $quantity > 0) {
+                $parking->slots()->delete();
+
+                for ($i=1; $i <=$quantity ; $i++) {
+                    $slot = new Slot;
+                    $slot->name = "A" . $i;
+                    $slot->parking_id = $parking->id;
+
+                    $slot->save();
+                }
+            }
 
     		Session::flash('message', 'Se ha actualizado satisfactoriamente!');
 
@@ -134,6 +143,6 @@ class ParkingController extends Controller
     	{
     		return redirect()->route('parking.index')
                     ->withErrors("Faltal error - ".$e->getMessage());
-    	}	
+    	}
     }
 }

@@ -8,7 +8,7 @@
 	
 	@include('partials/errors')
 
-	<form method="POST" action="{{ route('brand.update', [$brand->brand_id]) }}">
+	<form method="POST" action="{{ route('brand.update', [$brand->id]) }}">
 		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		<input type="hidden" name="_method" value="PUT">
 

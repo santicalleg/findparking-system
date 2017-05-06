@@ -54,4 +54,15 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function() {
 	Route::put('/parking/update/{id}', 'ParkingController@update')->where('id', '[0-9]+')->name('parking.update');
 
 	Route::delete('/parking/destroy/{id}', 'ParkingController@destroy')->where('id', '[0-9]+')->name('parking.destroy');
+
+	/*Slot*/
+	Route::get('/slot/{id}', 'SlotController@index')->where('id', '[0-9]+')->name('slot.index');
+
+	Route::get('/slot/create', 'SlotController@create')->name('slot.create');
+	Route::post('/slot/store', 'SlotController@store')->name('slot.store');
+
+	Route::get('/slot/edit/{id}', 'SlotController@edit')->where('id', '[0-9]+')->name('slot.edit');
+	Route::put('/slot/update/{id}', 'SlotController@update')->where('id', '[0-9]+')->name('slot.update');
+
+	Route::delete('/slot/destroy/{id}', 'SlotController@destroy')->where('id', '[0-9]+')->name('slot.destroy');
 });

@@ -50,14 +50,15 @@ class ParkingController extends Controller
     		$parking->administrator_id = Auth::user()->id;
     		$parking->save();
             
+			$slots = [];
             for ($i=1; $i <=$quantity ; $i++) {
                 $slot = new Slot;
                 $slot->name = "A" . $i;
-                $slot->parking_id = $parking->id;
-
-                $slot->save();
+				$slots[] = $slot;
             }
 
+			$parking->slots()->saveMany($slots);
+			
     		Session::flash('message', 'Se ha creado satisfactoriamente!');
 
     		return redirect()->route('parking.index');

@@ -1,11 +1,10 @@
 @extends('layout')
-
+<?php $parking_class_active = "active" ?>
+<?php $page_title = "Editar Estacionamiento" ?>
 @section('content')
 
 <div>
 
-	<h2>Editar Estacionamiento</h2>
-	
 	@include('partials/errors')
 
 	<form method="POST" action="{{ route('parking.update', [$parking->id]) }}">

@@ -1,11 +1,10 @@
 @extends('layout')
-
+<?php $parking_class_active = "active" ?>
+<?php $page_title = "Crear Estacionamiento" ?>
 @section('content')
 
 <div>
 
-	<h2>Crear Estacionamiento</h2>
-	
 	@include('partials/errors')
 
 	<form method="POST" action="{{ route('parking.store') }}">
@@ -55,7 +54,7 @@
 			<input class="form-control" type="text" name="schedule" value="{{ old('schedule') }}" />
 		</fieldset>
 		
-		<a href="{{ route('parking.index')}}" class="btn btn-danger">Cancelar</a>
+		<a href="{{ route('parking.index')}}" class="btn btn-default">Cancelar</a>
 		<button class="btn btn-primary" type="submit">Crear</button>
 	</form>
 

@@ -48,11 +48,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 {{ $page_title or "Page Title" }}
                 <small>{{ $page_description or null }}</small>
             </h1>
-            <!-- You can dynamically generate breadcrumbs here -->
+            {{-- <!-- You can dynamically generate breadcrumbs here -->
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
                 <li class="active">Here</li>
-            </ol>
+            </ol> --}}
         </section>
 
         <!-- Main content -->
@@ -80,11 +80,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
 
 
-<script>
+{{-- <script>
 $(document).ready(function() {
     $('#grid').DataTable();
 } );
-</script>
+</script> --}}
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the
       user experience -->

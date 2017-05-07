@@ -1,5 +1,6 @@
 @extends('layout')
-
+<?php $parking_class_active = "active" ?>
+<?php $page_title = "Listado de Estacionamientos" ?>
 @section('content')
 
 <!--<div class="row placeholders">-->
@@ -28,12 +29,12 @@
                     <td>{{ $parking->id }}</td>
                     <td>{{ $parking->parking_name }}</td>
                     <td>{{ $parking->nit }}</td>
-                    <td><a href="{{ route('parking.edit', [$parking->id]) }}" class="btn btn-info">Editar</a></td>
+                    <td><a href="{{ route('parking.edit', [$parking->id]) }}" class="btn btn-default"><span class="fa fa-pencil"></span></a></td>
                     <td>
                         <form method="POST" action="{{ route('parking.destroy', [$parking->id]) }}">
                           <input type="hidden" name="_token" value={{ csrf_token() }}>
                           <input type="hidden" name="_method" value="DELETE">
-                          <button type="submit" class="btn btn-danger">Eliminar</button>
+                          <button type="submit" class="btn btn-default"><span class="fa fa-trash"></span></button>
                         </form>
                     </td>
                     

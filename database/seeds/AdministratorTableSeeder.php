@@ -14,5 +14,14 @@ class AdministratorTableSeeder extends Seeder
     {
         //
         factory(Administrator::class)->times(2)->create();
+
+        DB::table('administrator')->insert([
+            'administrator_first_name' => 'Administrador', 
+            'administrator_last_name' => 'Find',
+            'name' => 'admin',
+            'email' => 'admin@findparking.com',
+            'password' => bcrypt('12345678'),
+            'created_at' => new DateTime()
+        ]);
     }
 }

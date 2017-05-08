@@ -77,11 +77,10 @@ class FirstMigration extends Migration
 
         Schema::create('slot', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->integer('vehicle_id')->unsigned()->nullable();
+            $table->string('slot_name');
+            $table->string('vehicle_id')->nullable();
             $table->integer('parking_id')->unsigned();
 
-            $table->foreign('vehicle_id')->references('id')->on('vehicle');
             $table->foreign('parking_id')->references('id')->on('parking');
 
             $table->timestamps();

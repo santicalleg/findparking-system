@@ -16,11 +16,6 @@ class Slot extends Model
         'parking_id'
     ];
 
-    public function vehicle()
-    {
-    	return $this->belongsTo(Vehicle::class);
-    }
-
     public function parking()
     {
     	return $this->belongsTo(Parking::class);

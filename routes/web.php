@@ -58,7 +58,7 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function() {
 	/*Slot*/
 	Route::get('/slot/{id}', 'SlotController@index')->where('id', '[0-9]+')->name('slot.index');
 
-	Route::get('/slot/create', 'SlotController@create')->name('slot.create');
+	Route::get('/slot/create/{id}', 'SlotController@create')->where('id', '[0-9]+')->name('slot.create');
 	Route::post('/slot/store', 'SlotController@store')->name('slot.store');
 
 	Route::get('/slot/edit/{id}', 'SlotController@edit')->where('id', '[0-9]+')->name('slot.edit');

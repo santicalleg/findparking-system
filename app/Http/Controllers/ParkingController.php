@@ -53,7 +53,7 @@ class ParkingController extends Controller
 			$slots = [];
             for ($i=1; $i <=$quantity ; $i++) {
                 $slot = new Slot;
-                $slot->name = "A" . $i;
+                $slot->slot_name = "A" . $i;
 				$slots[] = $slot;
             }
 

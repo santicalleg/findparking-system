@@ -56,8 +56,8 @@
 			<input class="form-control" type="text" name="schedule" value="{{ $parking->schedule }}" />
 		</fieldset>
 		
-		<a href="{{ route('parking.index')}}" class="btn btn-danger">Cancelar</a>
-		<button class="btn btn-primary" type="submit">Editar</button>
+		<a href="{{ route('parking.index')}}" class="btn btn-default">Cancelar</a>
+		<button class="btn btn-primary" type="submit">Guardar</button>
 	</form>
 
 </div>

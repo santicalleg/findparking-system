@@ -1,6 +1,6 @@
 @extends('layout')
 <?php $parking_class_active = "active" ?>
-<?php $page_title = "Crear Estacionamiento" ?>
+<?php $page_title = "Crear Parueadero" ?>
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyBXAvarIf2XRk1An2XF-eRR1cTbRF5d-qA&region=CO&libraries=places"></script>
 <script src="{{ asset ("/js/gmaptools.js") }}" type="text/javascript"></script>
 

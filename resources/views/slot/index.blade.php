@@ -22,6 +22,7 @@
                 <tr>
                   <th>#</th>
                   <th>Nombre</th>
+                  <th>Vehiculo</th>
                   <th colspan="2">Acciones</th>
                 </tr>
               </thead>
@@ -30,6 +31,7 @@
                   <tr>
                     <td>{{ $slot->id }}</td>
                     <td>{{ $slot->slot_name }}</td>
+                    <td>{{ $slot->vehicle_id }}</td>
                     <td>
                       <a href="{{ route('slot.edit', [$slot->id]) }}" title="Editar" class="btn btn-default">
                         <span class="fa fa-pencil"></span>

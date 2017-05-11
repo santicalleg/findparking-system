@@ -1,6 +1,6 @@
 @extends('layout')
 <?php $parking_class_active = "active" ?>
-<?php $page_title = "Listado de Estacionamientos" ?>
+<?php $page_title = "Listado de Parqueaderos" ?>
 @section('content')
 
 <!--<div class="row placeholders">-->
@@ -10,7 +10,7 @@
 	@endif
 
 	<p>
-		<a class="btn btn-primary" href="{{ route('parking.create') }}">Crear Estacionamiento</a>
+		<a class="btn btn-primary" href="{{ route('parking.create') }}">Crear Parqueadero</a>
 	</p>
   <div class="table-responsive">
 

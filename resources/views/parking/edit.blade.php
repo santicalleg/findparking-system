@@ -1,6 +1,6 @@
 @extends('layout')
 <?php $parking_class_active = "active" ?>
-<?php $page_title = "Editar Estacionamiento" ?>
+<?php $page_title = "Editar Parqueadero" ?>
 @section('content')
 
 <div>

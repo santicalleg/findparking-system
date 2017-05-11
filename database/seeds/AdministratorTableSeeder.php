@@ -13,7 +13,7 @@ class AdministratorTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(Administrator::class)->times(2)->create();
+        //factory(Administrator::class)->times(2)->create();
 
         DB::table('administrator')->insert([
             'administrator_first_name' => 'Administrador', 

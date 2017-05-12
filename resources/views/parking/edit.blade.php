@@ -1,6 +1,9 @@
 @extends('layout')
 <?php $parking_class_active = "active" ?>
 <?php $page_title = "Editar Parqueadero" ?>
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyBXAvarIf2XRk1An2XF-eRR1cTbRF5d-qA&region=CO&libraries=places"></script>
+<script src="{{ asset ("/js/gmaptools.js") }}" type="text/javascript"></script>
+
 @section('content')
 
 <div>
@@ -27,19 +30,27 @@
 		</fieldset>
 
 		<fieldset class="form-group">
-			<label>Latitud</label>
-			<input class="form-control" type="text" name="latitude" value="{{ $parking->latitude }}" />
-		</fieldset>
-
-		<fieldset class="form-group">
-			<label>Longitud</label>
-			<input class="form-control" type="text" name="longitude" value="{{ $parking->longitude }}" />
-		</fieldset>
-
-		<fieldset class="form-group">
 			<label>Dirección</label>
-			<input class="form-control" type="text" name="address" value="{{ $parking->address }}" />
+			<input class="form-control" type="text" id="address" name="address" value="{{ $parking->address }}" readonly />
 		</fieldset>
+
+		<div id="divMapNodo">
+            <table>
+                <tr>
+                    <td>
+                        <input id="addressinput" type="text" style="width: 250px" />
+                    </td>
+                    <td>
+                        <button type="button" id="btnBuscarDir" class="btn btn-default" onclick="return BuscarDireccion()"><span class="fa fa-search"></span></button>
+                    </td>
+                </tr>
+            </table>
+            <div id="mapaNodo" style="height: 350px; width: 350px;">
+            </div>
+        </div>
+
+		<input class="form-control" type="hidden" id="latitude" name="latitude" value="{{ $parking->latitude }}" />
+		<input class="form-control" type="hidden" id="longitude" name="longitude" value="{{ $parking->longitude }}" />
 
 		<fieldset class="form-group">
 			<label>Cantidad de espacios</label>

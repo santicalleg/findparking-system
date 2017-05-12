@@ -110,7 +110,7 @@ class ParkingController extends Controller
 
                 for ($i=1; $i <=$quantity ; $i++) {
                     $slot = new Slot;
-                    $slot->name = "A" . $i;
+                    $slot->slot_name = "A" . $i;
                     $slot->parking_id = $parking->id;
 
                     $slot->save();

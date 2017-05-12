@@ -32,7 +32,6 @@
             <li class="header">Menu</li>
             <!-- Optionally, you can add icons to the links -->
             {{-- <li class="active"><a href="{{ route('admin.dashboard') }}"><span>Home</span></a></li> --}}
-            <li class="{{ $brand_class_active or "" }}" ><a href="{{ route('brand.index') }}"><span>Marcas</span></a></li>
             <li class="{{ $parking_class_active or "" }}"><a href="{{ route('parking.index') }}"><span>Parqueaderos</span></a></li>
             {{-- <li class="treeview">
                 <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>

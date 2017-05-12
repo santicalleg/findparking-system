@@ -11,9 +11,10 @@
 	@include('partials/errors')
 
 	<form method="POST" action="{{ route('parking.update', [$parking->id]) }}">
-		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-		<input type="hidden" name="_method" value="PUT">
-
+		<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+		<input type="hidden" name="_method" value="PUT" />
+		<input type="hidden" id="id" value="{{ $parking->id }}" />
+		
 		<fieldset class="form-group">
 			<label for="parking_name">Nombre</label>
 			<input class="form-control" type="text" name="parking_name" value="{{ $parking->parking_name }}" />	

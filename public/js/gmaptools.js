@@ -33,11 +33,11 @@ function initialize() {
             center: latLng,
             mapTypeId: google.maps.MapTypeId.ROADMAP    
         });
-        GetMarkers(map);
-        GetRutas(map);
-        $("#hora").spinner({ min: 0, max: 23 });
-        $("#minutos").spinner({ min: 0, max: 59 });
-        $("#puestos").spinner({ min: 1, max: 4 });
+        // GetMarkers(map);
+        // GetRutas(map);
+        // $("#hora").spinner({ min: 0, max: 23 });
+        // $("#minutos").spinner({ min: 0, max: 59 });
+        // $("#puestos").spinner({ min: 1, max: 4 });
     }
     else {
         var map = new google.maps.Map(mapaNodo, {
@@ -79,6 +79,13 @@ function initialize() {
         });
         //llama la funcion para pintar todos los punto que tenga el usuario guardados
         //GetMarkers(map);
+
+        var userLat = document.getElementById("latitude").value;
+        var userLng = document.getElementById("longitude").value;
+
+        if (document.getElementById("id") !== null && document.getElementById("id").value > 0) {
+            SearchAddress(true);
+        }
     }
 }
 
@@ -325,12 +332,17 @@ function mapaDetalleRuta() {
 
 }
 
-
-
 //Funcion para buscar un lugar dada su direccion
-function SearchAddress() {
+function SearchAddress(hasAddress) {
     geocoder = new google.maps.Geocoder();
-    var address = document.getElementById("addressinput").value;
+    var address = "";
+    if (hasAddress) {
+        address = document.getElementById("address").value;
+    }
+    else
+    {
+        address = document.getElementById("addressinput").value;
+    }
     geocoder.geocode({ 'address': address }, function (results, status) {
         if (status == google.maps.GeocoderStatus.OK) {
             var latLng = results[0].geometry.location;
@@ -362,7 +374,7 @@ function SearchAddress() {
             google.maps.event.addListener(marker, 'dragend', function () {
                 geocodePosition(marker.getPosition());
             });
-            GetMarkers(map);
+            //GetMarkers(map);
         }
         else {
             console.log("Geocode no fue satisfactorio por la siguiente razón: " + status);

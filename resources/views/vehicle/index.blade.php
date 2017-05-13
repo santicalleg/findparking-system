@@ -1,9 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Vehiculos</title>
-</head>
-<body>
-<h1>Vehiculos</h1>
-</body>
-</html>
+@extends('layouts.user.layout')
+<?php $brand_class_active = "active" ?>
+<?php $page_title = "Mis vehículos" ?>
+@section('content')
+<h1>Vehículos</h1>
+@endsection

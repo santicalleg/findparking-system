@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 <?php $parking_class_active = "active" ?>
 <?php $page_title = "Listado de Parqueaderos" ?>
 @section('content')

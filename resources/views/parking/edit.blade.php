@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 <?php $parking_class_active = "active" ?>
 <?php $page_title = "Editar Parqueadero" ?>
 <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyBXAvarIf2XRk1An2XF-eRR1cTbRF5d-qA&region=CO&libraries=places"></script>

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 <?php $brand_class_active = "active" ?>
 <?php $page_title = "Crear Marca" ?>
 @section('content')

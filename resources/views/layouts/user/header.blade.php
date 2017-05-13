@@ -2,7 +2,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="{{ route('admin.dashboard') }}" class="logo"><b>FindParking</b></a>
+    <a href="/home" class="logo"><b>FindParking</b></a>
 
     <!-- Header Navbar -->
     <nav class="navbar navbar-static-top" role="navigation">

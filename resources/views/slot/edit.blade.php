@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 <?php $page_title = "Editar Espacio" ?>
 @section('content')
 

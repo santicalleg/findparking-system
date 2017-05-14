@@ -20,7 +20,7 @@
                   <th>#</th>
                   <th>Nombre</th>
                   <th>Nit</th>
-                  <th colspan="3">Acciones</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -30,21 +30,20 @@
                     <td>{{ $parking->parking_name }}</td>
                     <td>{{ $parking->nit }}</td>
                     <td>
-                      <a href="{{ route('parking.edit', [$parking->id]) }}" title="Editar" class="btn btn-default">
+                      
+                       <form method="POST" action="{{ route('parking.destroy', [$parking->id]) }}">
+                          <input type="hidden" name="_token" value={{ csrf_token() }}>
+                          <input type="hidden" name="_method" value="DELETE">
+                          <a href="{{ route('parking.edit', [$parking->id]) }}" title="Editar" class="btn btn-default">
                         <span class="fa fa-pencil"></span>
                       </a>
-                    </td>
-                    <td>
                       <a href="{{ route('slot.index', [$parking->id]) }}" title="Espacios" class="btn btn-default">
                         <span class="fa fa-automobile"></span>
                       </a>
-                    </td>
-                    <td>
-                        <form method="POST" action="{{ route('parking.destroy', [$parking->id]) }}">
-                          <input type="hidden" name="_token" value={{ csrf_token() }}>
-                          <input type="hidden" name="_method" value="DELETE">
                           <button type="submit" class="btn btn-default"><span class="fa fa-trash"></span></button>
                         </form>
+                    </td>
+                    <td>
                     </td>
                     
                   </tr>

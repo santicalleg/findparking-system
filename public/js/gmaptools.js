@@ -33,7 +33,7 @@ function initialize() {
             center: latLng,
             mapTypeId: google.maps.MapTypeId.ROADMAP    
         });
-        // GetMarkers(map);
+        GetMarkers(map);
         // GetRutas(map);
         // $("#hora").spinner({ min: 0, max: 23 });
         // $("#minutos").spinner({ min: 0, max: 59 });
@@ -211,14 +211,9 @@ function TraceRoute() {
 function GetMarkers(map) {
     //google.maps.LatLngBounds, esta funcion permite pintar una especie de rectangulo para delimitar la vista del mapa
     var infoWindow = new google.maps.InfoWindow({ content: "Cargando..." });
-    $.ajax({
-        type: "POST",
-        url: "/Ruta/GetMarkersAsync",
-        datatype: "json",
-        success: function (data) { //el parametro data es la coleccion de tipo IEnumerable<Nodo> devuelta como tipo Json
-            for (var i = 0; i < data.length; i++) {
+           for (var i = 0; i < data.length; i++) {
                 //obtiene la posicion del nodo
-                var point = new google.maps.LatLng(data[i].Lat, data[i].Lon);
+                var point = new google.maps.LatLng($("#latitude").val(), $("#longitude").val());
                 var imagen = document.getElementById("iconr").value; // "../Content/Icons/parkinggarage.png";
                 //declara el punto que se ira a pintar en el mapa
                 var marker = new google.maps.Marker({
@@ -229,19 +224,19 @@ function GetMarkers(map) {
                     html: data[i].Nombre
                 });
 
-                var sunCircle = {
-                    strokeColor: "#069ba5",
-                    strokeOpacity: 0.8,
-                    strokeWeight: 1,
-                    fillColor: "#069ba5",
-                    fillOpacity: 0.1,
-                    map: map,
-                    center: point,
-                    radius: 1500 // in meters
-                };
+                // var sunCircle = {
+                //     strokeColor: "#069ba5",
+                //     strokeOpacity: 0.8,
+                //     strokeWeight: 1,
+                //     fillColor: "#069ba5",
+                //     fillOpacity: 0.1,
+                //     map: map,
+                //     center: point,
+                //     radius: 1500 // in meters
+                // };
 
-                cityCircle = new google.maps.Circle(sunCircle);
-                cityCircle.bindTo('center', marker, 'position');
+                // cityCircle = new google.maps.Circle(sunCircle);
+                // cityCircle.bindTo('center', marker, 'position');
 
                 //guarda el punto en el array
                 puntos.push(marker);
@@ -252,8 +247,7 @@ function GetMarkers(map) {
                     infoWindow.open(map, this);
                 });
             }
-        }
-    });
+       
 }
 
 //Funcion para mostrar el detalle de la ruta con su correspondiente ubicacion en el mapa

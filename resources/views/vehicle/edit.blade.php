@@ -1,12 +1,14 @@
 @extends('layouts.user.layout')
-<?php $vehicle_class_active = "active" ?>
-<?php $page_title = "Crear vehículo" ?>
+<?php $brand_class_active = "active" ?>
+<?php $page_title = "Editar vehículo" ?>
 @section('content')
 
 <div>
 	@include('partials/errors')
 	
-	<form method="POST" action="{{ route('vehicle.store') }}">
+	<form method="POST" action="{{ route('vehicle.update', [$vehicle->id]) }}">
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
+		<input type="hidden" name="_method" value="PUT">
 		{{ csrf_field() }}
 
 		<fieldset class="form-group">
@@ -21,7 +23,7 @@
 
 		<fieldset class="form-group">
 			<label for="last_digit">Placa</label>
-			<input class="form-control" type="text" name="last_digit" value="{{ old('last_digit') }}" />	
+			<input class="form-control" type="text" name="last_digit" value="{{ $vehicle->last_digit }}" />	
 		</fieldset>
 
 		<fieldset class="form-group">
@@ -45,7 +47,7 @@
 		</fieldset>
 
 		<a href="{{ route('vehicle.index') }}" class="btn btn-default">Cancelar</a>
-		<button class="btn btn-primary" type="submit">Crear</button>
+		<button class="btn btn-primary" type="submit">Guardar</button>
 	</form>
 
 </div>

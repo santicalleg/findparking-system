@@ -21,6 +21,14 @@ Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['auth']], function(){
 	Route::get('/vehicle', 'VehicleController@index')->name('vehicle.index');
+
+	Route::get('/vehicle/create', 'VehicleController@create')->name('vehicle.create');
+	Route::post('/vehicle/store', 'VehicleController@store')->name('vehicle.store');
+
+	Route::get('/vehicle/edit/{id}', 'VehicleController@edit')->where('id', '[0-9]+')->name('vehicle.edit');
+	Route::put('/vehicle/update/{id}', 'VehicleController@update')->where('id', '[0-9]+')->name('vehicle.update');
+
+	Route::delete('/vehicle/destroy/{id}', 'VehicleController@destroy')->where('id', '[0-9]+')->name('vehicle.destroy');
 });
 
 Route::prefix('admin')->group(function() {

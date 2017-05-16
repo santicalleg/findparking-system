@@ -2,10 +2,15 @@
 
 namespace findparking\Http\Controllers;
 
+use Log;
 use Session;
 use Exception;
+use findparking\Brand;
+use findparking\Color;
 use findparking\Vehicle;
+use findparking\Vehicle_Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class VehicleController extends Controller
 {
@@ -13,19 +18,25 @@ class VehicleController extends Controller
     public function index()
     {
     	$vehicles = Vehicle::paginate(10);
-
+        
     	return view('vehicle/index', compact('vehicles'));
     }
 
     public function create()
     {
-    	return view('vehicle/create');
+        $colors = Color::all(['color_name', 'id']);
+        $brands = Brand::all(['brand_name', 'id']);
+        $types = Vehicle_Type::all(['vehicle_type_name', 'id']);
+    	return view('vehicle.create', compact('colors', 'brands', 'types'));
     }
 
     public function store(Request $request)
     {
+        Log::info('validating');
+
     	//validate data request
         $this->validate($request, [
+            'last_digit' => 'required|max:6',
             'color_id' => 'required|numeric|min:1',
             'brand_id' => 'required|numeric|min:1',
             'vehicle_type_id' => 'required|numeric|min:1'
@@ -34,10 +45,11 @@ class VehicleController extends Controller
         try
         {
         	$data = $request->all();
-        	$vehicle = new Vehicle($data);
-        	$vehicle->user_id = Auth::user()->id;
 
-        	Vehicle::Create($vehicle);
+        	$vehicle = new Vehicle($data);
+            $vehicle->user_id = Auth::user()->id;
+
+        	$vehicle->save();
 
         	Session::flash('message', 'Se ha creado satisfactoriamente!');
             return redirect()->route('vehicle.index');
@@ -53,7 +65,11 @@ class VehicleController extends Controller
     {
     	$vehicle = Vehicle::find($id);
 
-    	return view('vehicle/edit', compact('vehicle'));
+        $colors = Color::all(['color_name', 'id']);
+        $brands = Brand::all(['brand_name', 'id']);
+        $types = Vehicle_Type::all(['vehicle_type_name', 'id']);
+
+    	return view('vehicle/edit', compact('vehicle', 'colors', 'brands', 'types'));
     }
 
     public function update(Request $request, $id)

@@ -16,7 +16,9 @@
 			<select id="vehicle_type_id" name="vehicle_type_id" class="form-control">
 				<option value="0">--Seleccione--</option>
 				@foreach($types as $type)
-          			<option value="{{$type->id}}">{{$type->vehicle_type_name}}</option>
+          			<option value="{{$type->id}}" 
+          				{{ $type->id == $vehicle->vehicle_type_id ? 'selected' : ''}}>
+          				{{$type->vehicle_type_name}}</option>
         		@endforeach
 			</select>
 		</fieldset>
@@ -31,7 +33,9 @@
 			<select id="brand_id" name="brand_id" class="form-control">
 				<option value="0">--Seleccione--</option>
 				@foreach($brands as $brand)
-          			<option value="{{$brand->id}}">{{$brand->brand_name}}</option>
+          			<option value="{{$brand->id}}"
+          			{{ $brand->id == $vehicle->brand_id ? 'selected' : ''}}>
+          			{{$brand->brand_name}}</option>
         		@endforeach
 			</select>
 		</fieldset>
@@ -41,7 +45,9 @@
 			<select id="color_id" name="color_id" class="form-control">
 				<option value="0">--Seleccione--</option>
 				@foreach($colors as $color)
-          			<option value="{{$color->id}}">{{$color->color_name}}</option>
+					<option value="{{$color->id}}"
+          			{{ $color->id == $vehicle->color_id ? 'selected' : ''}}>
+          			{{ $color->color_name }}</option>
         		@endforeach
 			</select>
 		</fieldset>

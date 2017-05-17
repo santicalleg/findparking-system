@@ -74,11 +74,15 @@ class VehicleController extends Controller
 
     public function update(Request $request, $id)
     {
+        Log::info('edit-validating');
+
     	$this->validate($request, [
             'color_id' => 'required|numeric|min:1',
             'brand_id' => 'required|numeric|min:1',
             'vehicle_type_id' => 'required|numeric|min:1'
         ]);
+
+        Log::info('edit-validating-1');
 
         try
         {
@@ -87,8 +91,8 @@ class VehicleController extends Controller
 			//TODO: Validate if the user is the same between auth and vehicle owner.
 
 			$vehicle->color_id = $request->input('color_id');
-			$vehicle->brand_id = $request->input('color_id');
-			$vehicle->vehicle_type_id = $request->input('color_id');
+			$vehicle->brand_id = $request->input('brand_id');
+			$vehicle->vehicle_type_id = $request->input('vehicle_type_id');
 
 			$vehicle->save();
 

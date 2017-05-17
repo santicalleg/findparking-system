@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.user.layout')
 <?php $vehicle_class_active = "active" ?>
 <?php $page_title = "Mis vehículos" ?>
 @section('content')
@@ -19,6 +19,9 @@
                 <tr>
                   <th>#</th>
                   <th>Nombre</th>
+                  <th>Tipo</th>
+                  <th>Marca</th>
+                  <th>Color</th>
                   <th colspan="2">Acciones</th>
                 </tr>
               </thead>
@@ -27,6 +30,9 @@
                   <tr>
                     <td>{{ $vehicle->id }}</td>
                     <td>{{ $vehicle->last_digit }}</td>
+                    <td>{{ $vehicle->vehicle_type->vehicle_type_name }}</td>
+                    <td>{{ $vehicle->Brand->brand_name }}</td>
+                    <td>{{ $vehicle->Color->color_name }}</td>
                     <td><a href="{{ route('vehicle.edit', [$vehicle->id]) }}" class="btn btn-default"><span class="fa fa-pencil"></span></a></td>
                     <td>
                         <form method="POST" action="{{ route('vehicle.destroy', [$vehicle->id]) }}">

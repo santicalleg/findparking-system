@@ -43,6 +43,10 @@ Route::prefix('admin')->group(function() {
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function() {
 	Route::get('/', 'AdministratorController@index')->name('admin.dashboard');
+
+	Route::get('/administrator/edit', 'AdministratorController@edit')->name('admin.edit');
+	Route::put('/administrator/update', 'AdministratorController@update')->name('admin.update');
+
 	/*Brand*/
 	Route::get('/brand', 'BrandController@index')->name('brand.index');
 	Route::get('/brand/show/{id}', 'BrandController@show')->where('id', '[0-9]+')->name('brand.show');

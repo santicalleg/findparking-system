@@ -19,7 +19,10 @@ Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth']], function() {
+	Route::get('/user/edit', 'UserController@edit')->name('user.edit');
+	Route::put('/user/update', 'UserController@update')->name('user.update');
+
 	Route::get('/vehicle', 'VehicleController@index')->name('vehicle.index');
 
 	Route::get('/vehicle/create', 'VehicleController@create')->name('vehicle.create');

@@ -34,21 +34,35 @@ class AdministratorController extends Controller
 		$this->validate($request, [
 			'name' => 'required|max:255',
 			'administrator_first_name' => 'required|max:255',
-			'administrator_last_name' => 'required|max:255',
-			'email' => 'required|email|max:255|unique:user',
-			'password' => 'required|min:6|confirmed'
+			'administrator_last_name' => 'required|max:255'
 		]);
+
+		$admin = Administrator::find(Auth::user()->id);
+
+		if ($admin->email !== $request->input('email'))
+		{
+			$this->validate($request, [
+				'email' => 'required|email|max:255|unique:administrator'
+			]);
+
+			$admin->email = $request->input('email');
+		}
+
+		if ($request->input('password') !== NULL)
+		{
+			$this->validate($request, [
+				'password' => 'min:6|confirmed'
+			]);
+
+			$admin->password = bcrypt($request->input('password'));
+		}
 
 		try
 		{
-			$admin = Administrator::find(Auth::user()->id);
-
 			$admin->name = $request->input('name');
 			$admin->administrator_first_name = $request->input('administrator_first_name');
 			$admin->administrator_last_name = $request->input('administrator_last_name');
-			$admin->email = $request->input('email');
-			$admin->password = bcrypt($request->input('password'));
-
+			
 			$admin->save();
 
 			Session::flash('message', 'Se ha modificado satisfactoriamente!');
@@ -56,7 +70,7 @@ class AdministratorController extends Controller
 		}
 		catch(Exception $e)
     	{
-    		return redirect()->route('administrator.index')
+    		return redirect()->route('admin.edit')
                     ->withErrors("Faltal error - ".$e->getMessage());
     	}
 	}

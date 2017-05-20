@@ -18,7 +18,8 @@
               <thead>
                 <tr>
                   <th>#</th>
-                  <th>Nombre</th>
+                  <th>Placa</th>
+                  <th>En uso</th>
                   <th>Tipo</th>
                   <th>Marca</th>
                   <th>Color</th>
@@ -30,6 +31,7 @@
                   <tr>
                     <td>{{ $vehicle->id }}</td>
                     <td>{{ $vehicle->last_digit }}</td>
+                    <td>{{ $vehicle->is_active ? "Si" : "No" }}</td>
                     <td>{{ $vehicle->vehicle_type->vehicle_type_name }}</td>
                     <td>{{ $vehicle->Brand->brand_name }}</td>
                     <td>{{ $vehicle->Color->color_name }}</td>

@@ -89,6 +89,7 @@ class VehicleController extends Controller
 
 			//TODO: Validate if the user is the same between auth and vehicle owner.
 
+            $vehicle->is_active = $request->input('is_active');
 			$vehicle->color_id = $request->input('color_id');
 			$vehicle->brand_id = $request->input('brand_id');
 			$vehicle->vehicle_type_id = $request->input('vehicle_type_id');

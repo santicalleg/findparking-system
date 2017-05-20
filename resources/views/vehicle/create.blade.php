@@ -46,7 +46,8 @@
 
 		<fieldset class="form-group">
 			<label for="is_active">Establecer como vehículo actual</label>
-			<input type="checkbox" name="is_active" id="is_active" value="1" />
+			<input type="checkbox" name="chk_is_active" id="chk_is_active" />
+			<input type="hidden" name="is_active" id="is_active"  value="0" />
 		</fieldset>
 
 		<a href="{{ route('vehicle.index') }}" class="btn btn-default">Cancelar</a>
@@ -54,5 +55,27 @@
 	</form>
 
 </div>
+
+@endsection
+
+@section('scripts')
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+	$("#chk_is_active").change(function() {
+		console.log(this.checked);
+
+		if (this.checked) {
+			$("#is_active").val("1");
+		}
+		else {
+			$("#is_active").val("0");
+		}
+	});
+	
+});
+
+</script>
 
 @endsection

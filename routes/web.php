@@ -50,7 +50,7 @@ Route::prefix('admin')->group(function() {
 });
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function() {
-	Route::get('/', 'AdministratorController@index')->name('admin.dashboard');
+	Route::get('/', 'ParkingController@index')->name('admin.dashboard');
 
 	Route::get('/administrator/edit', 'AdministratorController@edit')->name('admin.edit');
 	Route::put('/administrator/update', 'AdministratorController@update')->name('admin.update');

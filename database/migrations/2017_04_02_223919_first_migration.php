@@ -62,6 +62,7 @@ class FirstMigration extends Migration
         Schema::create('vehicle', function (Blueprint $table) {
             $table->increments('id');
             $table->string('last_digit');
+            $table->boolean('is_active');
             $table->integer('color_id')->unsigned();
             $table->integer('brand_id')->unsigned();
             $table->integer('user_id')->unsigned();

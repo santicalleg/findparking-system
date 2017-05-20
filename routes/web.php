@@ -17,11 +17,16 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => ['auth']], function() {
 	Route::get('/user/edit', 'UserController@edit')->name('user.edit');
 	Route::put('/user/update', 'UserController@update')->name('user.update');
+
+	Route::get('/home', 'CheckinController@index');
+	Route::get('/checkin', 'CheckinController@index')->name('checkin.index');
+	Route::post('/checkin/store', 'CheckinController@store')->name('checkin.store');
+	Route::post('/checkout/store', 'CheckoutController@store')->name('checkout.store');
 
 	Route::get('/vehicle', 'VehicleController@index')->name('vehicle.index');
 

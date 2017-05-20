@@ -11,6 +11,7 @@ use findparking\Vehicle;
 use findparking\Vehicle_Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 
 class VehicleController extends Controller
 {
@@ -32,7 +33,7 @@ class VehicleController extends Controller
 
     public function store(Request $request)
     {
-        Log::info('validating');
+        //Log::info('store');
 
     	//validate data request
         $this->validate($request, [
@@ -45,11 +46,13 @@ class VehicleController extends Controller
         try
         {
         	$data = $request->all();
-
+            
         	$vehicle = new Vehicle($data);
             $vehicle->user_id = Auth::user()->id;
 
         	$vehicle->save();
+
+            $this->setToInactive($vehicle);
 
         	Session::flash('message', 'Se ha creado satisfactoriamente!');
             return redirect()->route('vehicle.index');
@@ -74,15 +77,11 @@ class VehicleController extends Controller
 
     public function update(Request $request, $id)
     {
-        Log::info('edit-validating');
-
     	$this->validate($request, [
             'color_id' => 'required|numeric|min:1',
             'brand_id' => 'required|numeric|min:1',
             'vehicle_type_id' => 'required|numeric|min:1'
         ]);
-
-        Log::info('edit-validating-1');
 
         try
         {
@@ -95,6 +94,8 @@ class VehicleController extends Controller
 			$vehicle->vehicle_type_id = $request->input('vehicle_type_id');
 
 			$vehicle->save();
+
+            $this->setToInactive($vehicle);
 
             Session::flash('message', 'Se ha actualizado satisfactoriamente!');
             return redirect()->route('vehicle.index');
@@ -121,6 +122,18 @@ class VehicleController extends Controller
         {
             return redirect()->route('vehicle.index')
                     ->withErrors("Faltal error - ".$e->getMessage());
+        }
+    }
+
+    private function setToInactive($vehicle)
+    {
+        if ($vehicle->is_active) 
+        {
+            $vehicles = Vehicle::all()->where('id','!=',$vehicle->id);
+            foreach ($vehicles as $item) {
+                $item->is_active = 0;
+                $item->save();
+            }
         }
     }
 }

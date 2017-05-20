@@ -44,6 +44,11 @@
 			</select>
 		</fieldset>
 
+		<fieldset class="form-group">
+			<label for="is_active">Establecer como vehículo actual</label>
+			<input type="checkbox" name="is_active" id="is_active" value="1" />
+		</fieldset>
+
 		<a href="{{ route('vehicle.index') }}" class="btn btn-default">Cancelar</a>
 		<button class="btn btn-primary" type="submit">Crear</button>
 	</form>

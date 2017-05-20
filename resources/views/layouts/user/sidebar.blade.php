@@ -30,7 +30,12 @@
             <li class="header">Menu</li>
             <!-- Optionally, you can add icons to the links -->
             {{-- <li class="active"><a href="/home"><span>Home</span></a></li> --}}
-            <li class="{{ $parking_class_active or "" }}">
+            <li class="{{ $chechin_class_active or "" }}">
+                <a href="{{ route('checkin.index') }}">
+                    <span>Parquear</span>
+                </a>
+            </li>
+            <li class="{{ $vehicle_class_active or "" }}">
                 <a href="{{ route('vehicle.index') }}">
                     <span>Mis vehículos</span>
                 </a>

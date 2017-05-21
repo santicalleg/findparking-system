@@ -29,12 +29,17 @@ class CheckoutController extends Controller
     		$slot->vehicle_id = '';
 			$slot->save();
 
-			Session::flash('message', 'Has parqueado!');
+			//Session::flash('message', 'Has salido del parqueadero!');
+
+            return response('Has salido del parqueadero!', 200);
     	}
     	catch(Exception $e)
         {
-            return redirect()->route('checkin.index')
-                    ->withErrors("Faltal error - ".$e->getMessage());
+            Log::error("Faltal error - ".$e->getMessage());
+            abort(500, 'Ha ocurrido un error en el servidor, por favor comuníquese con el administrador');
+
+            /*return redirect()->route('checkin.index')
+                    ->withErrors("Faltal error - ".$e->getMessage());*/
         }
     }
 }

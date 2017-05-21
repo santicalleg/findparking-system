@@ -32,7 +32,7 @@
             {{-- <li class="active"><a href="/home"><span>Home</span></a></li> --}}
             <li class="{{ $chechin_class_active or "" }}">
                 <a href="{{ route('checkin.index') }}">
-                    <span>Parquear</span>
+                    <span>Estacionar</span>
                 </a>
             </li>
             <li class="{{ $vehicle_class_active or "" }}">

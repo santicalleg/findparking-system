@@ -43,7 +43,9 @@ class CheckinController extends Controller
     			$slot->vehicle_id = $vehicles->last_digit;
     			$slot->save();
 
-    			Session::flash('message', 'Has parqueado!');
+    			//Session::flash('message', 'Has estacionado!');
+
+                return response('Has estacionado!', 200);
     		}
     		else
     		{
@@ -52,7 +54,7 @@ class CheckinController extends Controller
 
                 abort(409, "Oops, ya no hay mas lugares para ".
                         "estacionar en el parqueadero ".$parking->parking_name);
-                
+
     			/*return redirect()->route('checkin.index')
                     ->withErrors("Oops, ya no hay mas lugares para ".
                     	"estacionar en el parqueadero ".$parking->parking_name);*/
@@ -61,9 +63,9 @@ class CheckinController extends Controller
     	catch(Exception $e)
         {
             Log::error("Faltal error - ".$e->getMessage());
+            abort(500, 'Ha ocurrido un error en el servidor, por favor comuníquese con el administrador');
             /*return redirect()->route('checkin.index')
                     ->withErrors("Faltal error - ".$e->getMessage());*/
-            abort(500, 'Ha ocurrido un error en el servidor, por favor comuníquese con el administrador');
         }
     }
 }

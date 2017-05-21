@@ -13,7 +13,7 @@ use findparking\Administrator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 
-class CheckinControllerTest extends TestCase
+class CheckoutControllerTest extends TestCase
 {
     /**
      * A basic test example.
@@ -25,28 +25,29 @@ class CheckinControllerTest extends TestCase
         $this->assertTrue(true);
     }
 
-    public function testCheckIn()
+    public function testCheckout()
     {
-        $user = new User;
+    	$user = new User;
         $admin = new Administrator;
         $parking = new Parking;
         $vehicle = new Vehicle;
-        try
-        {
-            $user->name = 'user_checkin_test';
+
+    	try
+    	{
+    		$user->name = 'user_checkout_test';
             $user->first_name = 'user';
             $user->last_name = 'test';
-            $user->email = 'user_checkin_test@test.com';
+            $user->email = 'user_checkout_test@test.com';
             $user->mobile_number = '000000000';
             $user->password = bcrypt('12345678');
             $user->save();
 
             Log::info('user created');
 
-            $admin->name = 'admin_checkin_test';
+            $admin->name = 'admin_checkout_test';
             $admin->administrator_first_name = 'admin';
             $admin->administrator_last_name = 'test';
-            $admin->email = 'admin_checkin_test@test.com';
+            $admin->email = 'admin_checkout_test@test.com';
             $admin->password = bcrypt('12345678');
             $admin->save();
 
@@ -88,21 +89,23 @@ class CheckinControllerTest extends TestCase
 
             $response->assertStatus(200);
 
-            $this->assertTrue(true);
-        }
-        catch(Exception $e)
-        {
-            Log::error('Error: '.$e->getMessage());
-        }
-        finally 
-        {
-            $vehicle->delete();
+            $response = $this->call('POST', '/checkout/store', ['parking_id' => $parking_id]);
+
+            $response->assertStatus(200);
+    	}
+    	catch(Exception $e)
+    	{
+    		Log::error('Error: '.$e->getMessage());
+    	}
+    	finally
+    	{
+    		$vehicle->delete();
             $parking->slots()->delete();
             $parking->delete();
             $admin->delete();
             $user->delete();
 
             Log::info('data deleted');
-        }
+    	}
     }
 }

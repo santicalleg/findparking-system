@@ -47,15 +47,23 @@ class CheckinController extends Controller
     		}
     		else
     		{
-    			return redirect()->route('checkin.index')
+                Log::warning("Oops, ya no hay mas lugares para ".
+                        "estacionar en el parqueadero ".$parking->parking_name);
+
+                abort(409, "Oops, ya no hay mas lugares para ".
+                        "estacionar en el parqueadero ".$parking->parking_name);
+                
+    			/*return redirect()->route('checkin.index')
                     ->withErrors("Oops, ya no hay mas lugares para ".
-                    	"estacionar en el parqueadero ".$parking->parking_name);
+                    	"estacionar en el parqueadero ".$parking->parking_name);*/
     		}
     	}
     	catch(Exception $e)
         {
-            return redirect()->route('checkin.index')
-                    ->withErrors("Faltal error - ".$e->getMessage());
+            Log::error("Faltal error - ".$e->getMessage());
+            /*return redirect()->route('checkin.index')
+                    ->withErrors("Faltal error - ".$e->getMessage());*/
+            abort(500, 'Ha ocurrido un error en el servidor, por favor comuníquese con el administrador');
         }
     }
 }

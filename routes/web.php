@@ -17,10 +17,26 @@ Route::get('/', function () {
 
 Route::auth();
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
 
-Route::group(['middleware' => ['auth']], function(){
+Route::group(['middleware' => ['auth']], function() {
+	Route::get('/user/edit', 'UserController@edit')->name('user.edit');
+	Route::put('/user/update', 'UserController@update')->name('user.update');
+
+	Route::get('/home', 'CheckinController@index');
+	Route::get('/checkin', 'CheckinController@index')->name('checkin.index');
+	Route::post('/checkin/store', 'CheckinController@store')->name('checkin.store');
+	Route::post('/checkout/store', 'CheckoutController@store')->name('checkout.store');
+
 	Route::get('/vehicle', 'VehicleController@index')->name('vehicle.index');
+
+	Route::get('/vehicle/create', 'VehicleController@create')->name('vehicle.create');
+	Route::post('/vehicle/store', 'VehicleController@store')->name('vehicle.store');
+
+	Route::get('/vehicle/edit/{id}', 'VehicleController@edit')->where('id', '[0-9]+')->name('vehicle.edit');
+	Route::put('/vehicle/update/{id}', 'VehicleController@update')->where('id', '[0-9]+')->name('vehicle.update');
+
+	Route::delete('/vehicle/destroy/{id}', 'VehicleController@destroy')->where('id', '[0-9]+')->name('vehicle.destroy');
 });
 
 Route::prefix('admin')->group(function() {
@@ -34,7 +50,11 @@ Route::prefix('admin')->group(function() {
 });
 
 Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function() {
-	Route::get('/', 'AdministratorController@index')->name('admin.dashboard');
+	Route::get('/', 'ParkingController@index')->name('admin.dashboard');
+
+	Route::get('/administrator/edit', 'AdministratorController@edit')->name('admin.edit');
+	Route::put('/administrator/update', 'AdministratorController@update')->name('admin.update');
+
 	/*Brand*/
 	Route::get('/brand', 'BrandController@index')->name('brand.index');
 	Route::get('/brand/show/{id}', 'BrandController@show')->where('id', '[0-9]+')->name('brand.show');

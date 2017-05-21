@@ -11,16 +11,6 @@
                     You are logged in!
                 </div>
             </div>
-
-            <a href="{{ route('logout') }}" class="btn btn-default btn-flat" 
-                onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
-                Sign out
-            </a>
-
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
         </div>
     </div>
 </div>

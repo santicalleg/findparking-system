@@ -12,6 +12,7 @@ class Vehicle extends Model
     protected $fillable = [
         'id', 
         'last_digit', 
+        'is_active',
         'color_id', 
         'brand_id', 
         'user_id',

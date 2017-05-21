@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.layout')
 <?php 
 	$page_title = "Crear Espacio";
 ?>
@@ -16,7 +16,7 @@
 		</fieldset>
 		
 		<fieldset class="form-group">
-			<label>Vehículo</label>
+			<label for="vehicle_id">Vehículo</label>
 			<input class="form-control" type="text" name="vehicle_id" value="{{ old('vehicle_id') }}" />
 		</fieldset>
 		

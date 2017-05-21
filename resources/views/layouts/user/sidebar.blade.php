@@ -11,15 +11,13 @@
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</p>
-                <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
 
         <!-- search form (Optional) -->
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
+                <input type="text" name="q" class="form-control" placeholder="Buscar"/>
                 <span class="input-group-btn">
                   <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
                 </span>
@@ -32,7 +30,12 @@
             <li class="header">Menu</li>
             <!-- Optionally, you can add icons to the links -->
             {{-- <li class="active"><a href="/home"><span>Home</span></a></li> --}}
-            <li class="{{ $parking_class_active or "" }}">
+            <li class="{{ $chechin_class_active or "" }}">
+                <a href="{{ route('checkin.index') }}">
+                    <span>Parquear</span>
+                </a>
+            </li>
+            <li class="{{ $vehicle_class_active or "" }}">
                 <a href="{{ route('vehicle.index') }}">
                     <span>Mis vehículos</span>
                 </a>

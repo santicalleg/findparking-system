@@ -37,6 +37,9 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::put('/vehicle/update/{id}', 'VehicleController@update')->where('id', '[0-9]+')->name('vehicle.update');
 
 	Route::delete('/vehicle/destroy/{id}', 'VehicleController@destroy')->where('id', '[0-9]+')->name('vehicle.destroy');
+
+	/*Parking*/
+	Route::get('/parking/getAll', 'ParkingController@getAll')->name('parking.getAll');
 });
 
 Route::prefix('admin')->group(function() {

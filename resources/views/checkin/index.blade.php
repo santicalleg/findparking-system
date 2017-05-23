@@ -1,7 +1,7 @@
 @extends('layouts.user.layout')
 
 <?php 
-  $page_title = "Parquear";
+  $page_title = "Estacionar";
 ?>
 
 @section('content')

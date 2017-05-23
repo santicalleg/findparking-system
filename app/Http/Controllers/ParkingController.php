@@ -13,7 +13,7 @@ class ParkingController extends Controller
 {
     public function index()
     {
-    	$parkings = Parking::paginate(10);
+    	$parkings = Parking::where('administrator_id', Auth::user()->id)->paginate(10);
 
     	return view('parking/index', compact('parkings'));
     }
@@ -22,6 +22,13 @@ class ParkingController extends Controller
     {
     	$parking = Parking::find($id);
     	dd($parking);
+    }
+
+    public function getAll()
+    {
+        $parkings = Parking::All();
+
+        return $parkings->toJson();
     }
 
     public function create()

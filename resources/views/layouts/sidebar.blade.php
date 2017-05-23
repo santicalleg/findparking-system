@@ -11,6 +11,15 @@
             </div>
             <div class="pull-left info">
                 <p>{{ Auth::user()->administrator_first_name }} {{ Auth::user()->administrator_last_name }}</p>
+                <a href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    Salir
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form>
             </div>
         </div>
 

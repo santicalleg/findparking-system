@@ -62,12 +62,13 @@ function getMarkerContent(parking) {
       	'</div>'+
       	'<h2 id="firstHeading" class="firstHeading">'+parking.parking_name+'</h2>'+
 		'<div id="bodyContent">'+
+		'<p><b>Celdas disponibles: </b>'+parking.available_slots+'</p>'+
 		'<p><b>Teléfono: </b>'+parking.phone_number+'</p>'+
 		'<p><b>Dirección: </b>'+parking.address+'</p>'+
 		'<p><b>Servicios: </b>'+parking.services+'</p>'+
 		'<p><b>Horario: </b>'+parking.schedule+'</p>'+
 		'<div>'+
-		'<a class="col-md-6 btn btn-default" href="#">Detalle</a>'+
+		'<a class="col-md-6 btn btn-default" href="/parking/detail/'+parking.id+'">Detalle</a>'+
   		'<button class="col-md-6 btn btn-default">Estacionar</button>'+
 		'</div>'+
         '</div>'+

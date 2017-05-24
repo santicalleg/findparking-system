@@ -40,6 +40,7 @@ Route::group(['middleware' => ['auth']], function() {
 
 	/*Parking*/
 	Route::get('/parking/getAll', 'ParkingController@getAll')->name('parking.getAll');
+	Route::get('/parking/detail/{id}', 'ParkingController@detail')->where('id', '[0-9]+')->name('parking.detail');
 });
 
 Route::prefix('admin')->group(function() {

@@ -7,6 +7,7 @@ use Exception;
 use findparking\Slot;
 use findparking\Parking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class ParkingController extends Controller
@@ -24,9 +25,28 @@ class ParkingController extends Controller
     	dd($parking);
     }
 
+    public function detail($id)
+    {
+        $parking = Parking::find($id);
+
+        return view('parking/detail', compact('parking'));
+    }
+
     public function getAll()
     {
-        $parkings = Parking::All();
+        // $parkings = Parking::with(['slots' => function($query) {
+        //     $query->whereNull('vehicle_id');
+        // }])->get();
+
+        $parkings = DB::table('parking')
+                        ->join('slot', 'parking.id', '=', 'slot.parking_id')
+                        ->select('parking.*', DB::raw('count(*) as available_slots'))
+                        ->whereNull('slot.vehicle_id')
+                        ->groupBy('parking.id', 'parking.parking_name','parking.nit', 
+                            'parking.phone_number', 'parking.latitude', 'parking.longitude', 
+                            'parking.address', 'parking.services','parking.schedule', 
+                            'parking.administrator_id', 'parking.created_at', 'parking.updated_at')
+                        ->get();
 
         return $parkings->toJson();
     }

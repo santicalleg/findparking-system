@@ -69,10 +69,32 @@ function getMarkerContent(parking) {
 		'<p><b>Horario: </b>'+parking.schedule+'</p>'+
 		'<div>'+
 		'<a class="col-md-6 btn btn-default" href="/parking/detail/'+parking.id+'">Detalle</a>'+
-  		'<button class="col-md-6 btn btn-default">Estacionar</button>'+
+  		'<button data-parking-id='+parking.id +' class="col-md-6 btn btn-default" onclick="checkIn(this)">Estacionar</button>'+
 		'</div>'+
         '</div>'+
         '</div>';
 
 	return content;
+}
+
+function checkIn(data) {
+	console.log("checkIn");
+	var parking_id = data.getAttribute('data-parking-id');
+	$.ajax({
+		type: 'POST',
+		headers: {
+        	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    	},
+  		url: 'checkin/store',
+  		contentType: 'application/json',
+		data: JSON.stringify({ 'parking_id': parking_id }),
+  		success: function(data, status, jqXHR) {
+  			console.log("success");
+  		},
+  		error: function(textStatus, errorThrown) {
+			console.log("error: " + textStatus.responseText);
+		}
+	});
+
+	console.log("async");
 }

@@ -2,6 +2,7 @@
 
 namespace findparking\Http\Controllers;
 
+use Log;
 use Session;
 use Exception;
 use findparking\User;
@@ -35,15 +36,24 @@ class CheckinController extends Controller
     		{
     			$user = Auth::user();
 	    		
-	    		$vehicles = $user->vehicles();
-	    		$vehicle = $vehicles->where('is_active', 1)->first();
+	    		$vehicles = Vehicle::where('user_id', $user->id);
+				
+				if ($vehicles->count() == 0) 
+				{
+					return response('Por favor adicione un vehículo y establezcalo en uso para poder parquear', 400);
+				}
+
+				$vehicle = $vehicles->where('is_active', 1)->first();
+
+				if (empty($vehicle))
+				{
+					return response('Actualmente no tiene un vehículo en uso', 400);
+				}
 
     			$freeSlot = $slots->whereNull('vehicle_id')->first();
     			$slot = Slot::find($freeSlot->id);
-    			$slot->vehicle_id = $vehicles->last_digit;
+    			$slot->vehicle_id = $vehicle->last_digit;
     			$slot->save();
-
-    			//Session::flash('message', 'Has estacionado!');
 
                 return response('Has estacionado!', 200);
     		}
@@ -52,20 +62,14 @@ class CheckinController extends Controller
                 Log::warning("Oops, ya no hay mas lugares para ".
                         "estacionar en el parqueadero ".$parking->parking_name);
 
-                abort(409, "Oops, ya no hay mas lugares para ".
-                        "estacionar en el parqueadero ".$parking->parking_name);
-
-    			/*return redirect()->route('checkin.index')
-                    ->withErrors("Oops, ya no hay mas lugares para ".
-                    	"estacionar en el parqueadero ".$parking->parking_name);*/
+                return response("Oops, ya no hay mas lugares para ".
+                        "estacionar en el parqueadero ".$parking->parking_name, 409);
     		}
     	}
     	catch(Exception $e)
         {
             Log::error("Faltal error - ".$e->getMessage());
-            abort(500, 'Ha ocurrido un error en el servidor, por favor comuníquese con el administrador');
-            /*return redirect()->route('checkin.index')
-                    ->withErrors("Faltal error - ".$e->getMessage());*/
+            return response('Ha ocurrido un error en el servidor, por favor comuníquese con el administrador', 500);
         }
     }
 }

@@ -18,7 +18,8 @@ class VehicleController extends Controller
     //
     public function index()
     {
-    	$vehicles = Vehicle::paginate(10);
+        $user = Auth::user();
+    	$vehicles = Vehicle::where('user_id', $user->id)->paginate(10);
         
     	return view('vehicle/index', compact('vehicles'));
     }

@@ -7,6 +7,7 @@ use Session;
 use Exception;
 use findparking\User;
 use findparking\Slot;
+use findparking\Park;
 use findparking\Parking;
 use findparking\Vehicle;
 use Illuminate\Http\Request;
@@ -49,6 +50,12 @@ class CheckinController extends Controller
 				{
 					return response('Actualmente no tiene un vehículo en uso', 400);
 				}
+
+                $park = new Park;
+                $park->user_id = $user->id;
+                $park->vehicle_id = $vehicle->id;
+                $park->parking_id = $parking->id;
+                $park->save();
 
     			$freeSlot = $slots->whereNull('vehicle_id')->first();
     			$slot = Slot::find($freeSlot->id);

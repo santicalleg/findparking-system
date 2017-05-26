@@ -22,8 +22,8 @@
                   <th>En uso</th>
                   <th>Tipo</th>
                   <th>Marca</th>
-                  <th>Color</th>
-                  <th colspan="2">Acciones</th>
+                  <th class="hidden-xs">Color</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -34,14 +34,16 @@
                     <td>{{ $vehicle->is_active ? "Si" : "No" }}</td>
                     <td>{{ $vehicle->vehicle_type->vehicle_type_name }}</td>
                     <td>{{ $vehicle->Brand->brand_name }}</td>
-                    <td>{{ $vehicle->Color->color_name }}</td>
-                    <td><a href="{{ route('vehicle.edit', [$vehicle->id]) }}" class="btn btn-default"><span class="fa fa-pencil"></span></a></td>
+                    <td class="hidden-xs">{{ $vehicle->Color->color_name }}</td>
                     <td>
-                        <form method="POST" action="{{ route('vehicle.destroy', [$vehicle->id]) }}">
-                          <input type="hidden" name="_token" value={{ csrf_token() }}>
-                          <input type="hidden" name="_method" value="DELETE">
-                          <button type="submit" class="btn btn-default"><span class="fa fa-trash"></span></button>
-                        </form>
+                      <form method="POST" action="{{ route('vehicle.destroy', [$vehicle->id]) }}">
+                        <a href="{{ route('vehicle.edit', [$vehicle->id]) }}" class="btn btn-default">
+                          <span class="fa fa-pencil"></span>
+                        </a>
+                        <input type="hidden" name="_token" value={{ csrf_token() }}>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-default"><span class="fa fa-trash"></span></button>
+                      </form>
                     </td>
                     
                   </tr>

@@ -30,16 +30,15 @@
                     <td>{{ $parking->parking_name }}</td>
                     <td>{{ $parking->nit }}</td>
                     <td>
-                      
                        <form method="POST" action="{{ route('parking.destroy', [$parking->id]) }}">
                           <input type="hidden" name="_token" value={{ csrf_token() }}>
                           <input type="hidden" name="_method" value="DELETE">
                           <a href="{{ route('parking.edit', [$parking->id]) }}" title="Editar" class="btn btn-default">
-                        <span class="fa fa-pencil"></span>
-                      </a>
-                      <a href="{{ route('slot.index', [$parking->id]) }}" title="Espacios" class="btn btn-default">
-                        <span class="fa fa-automobile"></span>
-                      </a>
+                            <span class="fa fa-pencil"></span>
+                          </a>
+                          <a href="{{ route('slot.index', [$parking->id]) }}" title="Espacios" class="btn btn-default">
+                            <span class="fa fa-automobile"></span>
+                          </a>
                           <button type="submit" class="btn btn-default"><span class="fa fa-trash"></span></button>
                         </form>
                     </td>

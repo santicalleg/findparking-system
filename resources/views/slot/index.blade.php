@@ -23,7 +23,7 @@
                   <th>#</th>
                   <th>Nombre</th>
                   <th>Vehiculo</th>
-                  <th colspan="2">Acciones</th>
+                  <th>Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -33,16 +33,14 @@
                     <td>{{ $slot->slot_name }}</td>
                     <td>{{ $slot->vehicle_id }}</td>
                     <td>
-                      <a href="{{ route('slot.edit', [$slot->id]) }}" title="Editar" class="btn btn-default">
-                        <span class="fa fa-pencil"></span>
-                      </a>
-                    </td>
-                    <td>
-                        <form method="POST" action="{{ route('slot.destroy', [$slot->id]) }}">
-                          <input type="hidden" name="_token" value={{ csrf_token() }}>
-                          <input type="hidden" name="_method" value="DELETE">
-                          <button type="submit" class="btn btn-default"><span class="fa fa-trash"></span></button>
-                        </form>
+                      <form method="POST" action="{{ route('slot.destroy', [$slot->id]) }}">
+                        <a href="{{ route('slot.edit', [$slot->id]) }}" title="Editar" class="btn btn-default">
+                          <span class="fa fa-pencil"></span>
+                        </a>
+                        <input type="hidden" name="_token" value={{ csrf_token() }}>
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button type="submit" class="btn btn-default"><span class="fa fa-trash"></span></button>
+                      </form>
                     </td>
                     
                   </tr>

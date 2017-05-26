@@ -16,7 +16,17 @@ class BrandTableSeeder extends Seeder
         //factory(Brand::class)->times(100)->create();
 
         DB::table('brand')->insert([
+            'brand_name' => 'AKT',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
             'brand_name' => 'Audi',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
+            'brand_name' => 'Bajaj',
             'created_at' => new DateTime()
         ]);
 
@@ -66,7 +76,32 @@ class BrandTableSeeder extends Seeder
         ]);
 
         DB::table('brand')->insert([
+            'brand_name' => 'Kawasaki',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
+            'brand_name' => 'Keeway',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
             'brand_name' => 'Kia',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
+            'brand_name' => 'KTM',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
+            'brand_name' => 'Kymco',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
+            'brand_name' => 'LML',
             'created_at' => new DateTime()
         ]);
 
@@ -101,12 +136,22 @@ class BrandTableSeeder extends Seeder
         ]);
 
         DB::table('brand')->insert([
+            'brand_name' => 'Piaggio',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
             'brand_name' => 'Porsche',
             'created_at' => new DateTime()
         ]);
 
         DB::table('brand')->insert([
             'brand_name' => 'Renault',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
+            'brand_name' => 'Sachs',
             'created_at' => new DateTime()
         ]);
 
@@ -131,12 +176,32 @@ class BrandTableSeeder extends Seeder
         ]);
 
         DB::table('brand')->insert([
+            'brand_name' => 'Suzuki',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
             'brand_name' => 'Toyota',
             'created_at' => new DateTime()
         ]);
 
         DB::table('brand')->insert([
+            'brand_name' => 'TVS',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
+            'brand_name' => 'UM',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
             'brand_name' => 'Volkswagen',
+            'created_at' => new DateTime()
+        ]);
+
+        DB::table('brand')->insert([
+            'brand_name' => 'Yamaha',
             'created_at' => new DateTime()
         ]);
     }

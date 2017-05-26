@@ -90,9 +90,20 @@ function checkIn(data) {
 		data: JSON.stringify({ 'parking_id': parking_id }),
   		success: function(data, status, jqXHR) {
   			console.log("success");
+  			$(".modal-title").html("Felicidades");
+  			$("#modal-body-message").html("Has estacionado correctamente!");
+  			$("#windowModal").modal();
   		},
   		error: function(textStatus, errorThrown) {
 			console.log("error: " + textStatus.responseText);
+			if (textStatus.status >= 400 || textStatus.status < 500) {
+				$(".modal-title").html("Advertencia");
+			}
+			else {
+				$(".modal-title").html("Error");
+			}
+  			$("#modal-body-message").html(textStatus.responseText);
+  			$("#windowModal").modal();
 		}
 	});
 

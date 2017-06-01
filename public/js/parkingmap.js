@@ -13,7 +13,9 @@ function initMap() {
     });
 
 	directionsService = new google.maps.DirectionsService;
-	directionsDisplay = new google.maps.DirectionsRenderer;
+	directionsDisplay = new google.maps.DirectionsRenderer({
+		suppressMarkers: true
+	});
 
     getParkings(map);
     getLocation(map);

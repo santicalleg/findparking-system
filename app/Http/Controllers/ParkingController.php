@@ -65,23 +65,34 @@ class ParkingController extends Controller
 			'latitude' => 'required|max:200',
 			'longitude' => 'required|max:200',
 			'address' => 'required|max:200',
-            'quantity_slots' => 'required|numeric|min:1'
+            'cars_quantity_slots' => 'required|numeric',
+            'motorcycles_quantity_slots' => 'required|numeric',
+            'price' => 'numeric'
 		]);
 
 		try
     	{
     		$data = $request->all();
-            $quantity = $request->input('quantity_slots');
+            $cars_quantity = $request->input('cars_quantity_slots');
+            $motorcycles_quantity = $request->input('motorcycles_quantity_slots');
 
     		$parking = new Parking($data);
     		$parking->administrator_id = Auth::user()->id;
     		$parking->save();
             
 			$slots = [];
-            for ($i=1; $i <=$quantity ; $i++) {
+            for ($i=1; $i <=$cars_quantity ; $i++) {
                 $slot = new Slot;
                 $slot->slot_name = "A" . $i;
+                $slot->vehicle_type_id = 1;
 				$slots[] = $slot;
+            }
+
+            for ($i=1; $i <=$motorcycles_quantity ; $i++) {
+                $slot = new Slot;
+                $slot->slot_name = "A" . $i;
+                $slot->vehicle_type_id = 2;
+                $slots[] = $slot;
             }
 
 			$parking->slots()->saveMany($slots);
@@ -100,8 +111,18 @@ class ParkingController extends Controller
     public function edit($id)
     {
     	$parking = Parking::find($id);
+        
+        $cars_quantity = Slot::where([
+            ['vehicle_type_id', '=', 1], 
+            ['parking_id', '=', $parking->id]
+        ])->count();
 
-    	return view('parking/edit', compact('parking'));
+        $motorcycles_quantity = Slot::where([
+            ['vehicle_type_id', '=', 2], 
+            ['parking_id', '=', $parking->id]
+        ])->count();
+
+    	return view('parking/edit', compact('parking', 'cars_quantity', 'motorcycles_quantity'));
     }
 
     public function update(Request $request, $id)
@@ -113,12 +134,18 @@ class ParkingController extends Controller
 			'latitude' => 'required|max:200',
 			'longitude' => 'required|max:200',
 			'address' => 'required|max:200',
-            'quantity_slots' => 'required|numeric|min:1'
+            'cars_quantity_slots' => 'required|numeric',
+            'motorcycles_quantity_slots' => 'required|numeric',
+            'price' => 'numeric'
 		]);
 
 		try
     	{
-            $quantity = $request->input('quantity_slots');
+            $quantity = 0;
+            $cars_quantity = $request->input('cars_quantity_slots');
+            $motorcycles_quantity = $request->input('motorcycles_quantity_slots');
+            $quantity = $cars_quantity + $motorcycles_quantity;
+
     		$parking = Parking::find($id);
 
     		$parking->parking_name = $request->input('parking_name');
@@ -129,20 +156,48 @@ class ParkingController extends Controller
     		$parking->address = $request->input('address');
     		$parking->services = $request->input('services');
     		$parking->schedule = $request->input('schedule');
+            $parking->price = $request->input('price');
 
     		$parking->save();
 
-            if ($parking->slots()->count() != $quantity && $quantity > 0) {
-                $parking->slots()->delete();
+            $parking->slots()->delete();
 
-                for ($i=1; $i <=$quantity ; $i++) {
-                    $slot = new Slot;
-                    $slot->slot_name = "A" . $i;
-                    $slot->parking_id = $parking->id;
+            for ($i=1; $i <=$cars_quantity ; $i++) {
+                $slot = new Slot;
+                $slot->slot_name = "A" . $i;
+                $slot->parking_id = $parking->id;
+                $slot->vehicle_type_id = 1;
 
-                    $slot->save();
-                }
+                $slot->save();
             }
+
+            for ($i=1; $i <=$motorcycles_quantity ; $i++) {
+                $slot = new Slot;
+                $slot->slot_name = "A" . $i;
+                $slot->parking_id = $parking->id;
+                $slot->vehicle_type_id = 2;
+
+                $slot->save();
+            }
+            // if ($parking->slots()->count() != $quantity && $quantity > 0) {
+            //     $parking->slots()->delete();
+
+            //     for ($i=1; $i <=$cars_quantity ; $i++) {
+            //         $slot = new Slot;
+            //         $slot->slot_name = "A" . $i;
+            //         $slot->parking_id = $parking->id;
+
+            //         $slot->save();
+            //     }
+
+            //     for ($i=1; $i <=$motorcycles_quantity ; $i++) {
+            //         $slot = new Slot;
+            //         $slot->slot_name = "A" . $i;
+            //         $slot->parking_id = $parking->id;
+
+            //         $slot->save();
+            //     }
+            // }
 
     		Session::flash('message', 'Se ha actualizado satisfactoriamente!');
 

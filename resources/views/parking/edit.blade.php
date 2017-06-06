@@ -54,8 +54,13 @@
 		<input class="form-control" type="hidden" id="longitude" name="longitude" value="{{ $parking->longitude }}" />
 
 		<fieldset class="form-group">
-			<label>Cantidad de espacios</label>
-			<input class="form-control" type="text" name="quantity_slots" value="{{ $parking->slots()->count() }}" />
+			<label>Cantidad de espacios para carros</label>
+			<input class="form-control" type="text" name="cars_quantity_slots" value="{{ $cars_quantity }}" />
+		</fieldset>
+
+		<fieldset class="form-group">
+			<label>Cantidad de espacios para motos</label>
+			<input class="form-control" type="text" name="motorcycles_quantity_slots" value="{{ $motorcycles_quantity }}" />
 		</fieldset>
 
 		<fieldset class="form-group">
@@ -66,6 +71,11 @@
 		<fieldset class="form-group">
 			<label>Horario</label>
 			<input class="form-control" type="text" name="schedule" value="{{ $parking->schedule }}" />
+		</fieldset>
+
+		<fieldset class="form-group">
+			<label>Precio</label>
+			<input class="form-control" type="text" name="price" value="{{ $parking->price }}" />
 		</fieldset>
 		
 		<a href="{{ route('parking.index')}}" class="btn btn-default">Cancelar</a>

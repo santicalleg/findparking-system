@@ -80,8 +80,10 @@ class FirstMigration extends Migration
             $table->string('slot_name');
             $table->string('vehicle_id')->nullable();
             $table->integer('parking_id')->unsigned();
-
+            $table->integer('vehicle_type_id')->unsigned();
+            
             $table->foreign('parking_id')->references('id')->on('parking');
+            $table->foreign('vehicle_type_id')->references('id')->on('vehicle_type');
 
             $table->timestamps();
         });

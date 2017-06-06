@@ -55,11 +55,14 @@
 			<input class="form-control" type="hidden" id="latitude" name="latitude" value="{{ old('latitude') }}" />
 			<input class="form-control" type="hidden" id="longitude" name="longitude" value="{{ old('longitude') }}" />
 
-		
+		<fieldset class="form-group">
+			<label>Cantidad de espacios para carros</label>
+			<input class="form-control" type="text" name="cars_quantity_slots" value="{{ old('cars_quantity_slots') }}" />
+		</fieldset>
 
 		<fieldset class="form-group">
-			<label>Cantidad de espacios</label>
-			<input class="form-control" type="text" name="quantity_slots" value="{{ old('quantity_slots') }}" />
+			<label>Cantidad de espacios para motos</label>
+			<input class="form-control" type="text" name="motorcycles_quantity_slots" value="{{ old('motorcycles_quantity_slots') }}" />
 		</fieldset>
 
 		<fieldset class="form-group">
@@ -70,6 +73,11 @@
 		<fieldset class="form-group">
 			<label>Horario</label>
 			<input class="form-control" type="text" name="schedule" value="{{ old('schedule') }}" />
+		</fieldset>
+
+		<fieldset class="form-group">
+			<label>Precio</label>
+			<input class="form-control" type="text" name="price" value="{{ old('price') }}" />
 		</fieldset>
 		
 		<a href="{{ route('parking.index')}}" class="btn btn-default">Cancelar</a>

@@ -23,6 +23,7 @@
                   <th>#</th>
                   <th>Nombre</th>
                   <th>Vehiculo</th>
+                  <th>Tipo</th>
                   <th>Acciones</th>
                 </tr>
               </thead>
@@ -32,6 +33,7 @@
                     <td>{{ $slot->id }}</td>
                     <td>{{ $slot->slot_name }}</td>
                     <td>{{ $slot->vehicle_id }}</td>
+                    <td>{{ $slot->vehicle_type->vehicle_type_name }}</td>
                     <td>
                       <form method="POST" action="{{ route('slot.destroy', [$slot->id]) }}">
                         <a href="{{ route('slot.edit', [$slot->id]) }}" title="Editar" class="btn btn-default">

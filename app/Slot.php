@@ -13,11 +13,17 @@ class Slot extends Model
         'id', 
         'slot_name', 
         'vehicle_id', 
-        'parking_id'
+        'parking_id',
+        'vehicle_type_id'
     ];
 
     public function parking()
     {
     	return $this->belongsTo(Parking::class);
+    }
+
+    public function vehicle_type()
+    {
+        return $this->belongsTo(Vehicle_Type::class);
     }
 }

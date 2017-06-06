@@ -15,7 +15,7 @@ class AddSlotVechicleTypeColumn extends Migration
     {
         //
         Schema::table('slot', function(Blueprint $table) {
-            $table->integer('vehicle_type_id')->unsigned()->defautl(1);
+            $table->integer('vehicle_type_id')->unsigned()->default(1);
             $table->foreign('vehicle_type_id')->references('id')->on('vehicle_type');
         });
     }
@@ -29,7 +29,7 @@ class AddSlotVechicleTypeColumn extends Migration
     {
         //
         Schema::table('slot', function(Blueprint $table) {
-            $table->dropColumn('price');
+            $table->dropColumn('vehicle_type_id');
         });
     }
 }

@@ -44,7 +44,7 @@ class ParkingController extends Controller
                         ->whereNull('slot.vehicle_id')
                         ->groupBy('parking.id', 'parking.parking_name','parking.nit', 
                             'parking.phone_number', 'parking.latitude', 'parking.longitude', 
-                            'parking.address', 'parking.services','parking.schedule', 
+                            'parking.address', 'parking.services','parking.schedule', 'parking.price',
                             'parking.administrator_id', 'parking.created_at', 'parking.updated_at')
                         ->get();
 

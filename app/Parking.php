@@ -20,7 +20,8 @@ class Parking extends Model
         'services',
         'schedule',
         'administrator_id',
-        'price'
+        'price',
+        'rating'
     ];
 
     public function administrator()

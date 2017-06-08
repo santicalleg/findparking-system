@@ -20,6 +20,16 @@
 			<input class="form-control" type="text" name="vehicle_id" value="{{ old('vehicle_id') }}" />
 		</fieldset>
 		
+		<fieldset class="form-group">
+			<label for="vehicle_type_id">Tipo</label>
+			<select id="vehicle_type_id" name="vehicle_type_id" class="form-control">
+				<option value="0">--Seleccione--</option>
+				@foreach($types as $type)
+          			<option value="{{$type->id}}">{{$type->vehicle_type_name}}</option>
+        		@endforeach
+			</select>
+		</fieldset>
+
 		<input type="hidden" name="parking_id" value="{{ $id }}">
 
 		<a href="{{ route('slot.index', [Request::segment(4)]) }}" class="btn btn-default">Cancelar</a>

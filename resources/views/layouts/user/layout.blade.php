@@ -25,7 +25,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
     -->
     <link href="{{ asset('/bower_components/admin-lte/dist/css/skins/skin-blue.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/app.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/rating.css') }}">
     <link href="{{ asset('/css/bootstrap-star-rating/star-rating.min.css') }}" 
             media="all" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->

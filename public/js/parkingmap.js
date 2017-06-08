@@ -81,6 +81,10 @@ function onSuccess(data, status, jqXHR, map)
 		marker.addListener('click', function() {
 			var infowindow = getMarkerInfoWindow(value);
   			infowindow.open(map, marker);
+
+        setTimeout(function () { 
+            $(".rating-loading").rating({ displayOnly: true, step: 0.1 });
+        }, 150); 
 		});
 	});
 
@@ -91,9 +95,9 @@ function onError(textStatus, errorThrown) {
 }
 
 function getMarkerInfoWindow(parking) {
-	var infowindow = new google.maps.InfoWindow({
-    		content: getMarkerContent(parking)
-  		});
+  var infowindow = new google.maps.InfoWindow({
+    content: getMarkerContent(parking)
+  });
 
 	return infowindow;
 }
@@ -103,45 +107,24 @@ function getMarkerContent(parking) {
       	'<div id="siteNotice">'+
       	'</div>'+
       	'<h2 id="firstHeading" class="firstHeading">'+parking.parking_name+'</h2>'+
-		'<div id="bodyContent">'+
+    		'<div id="bodyContent">'+
 
-    // '<input id="input-id-'+ parking.id +'" type="text" class="rating" '+ 
-    // 'value="'+ parking.rating +'"data-size="xs" data-min="0" data-max="5" data-step="0.1" />' +
+        '<input id="input-id-'+ parking.id +'" type="text" class="rating-loading" '+ 
+        'value="'+ parking.rating +'" data-size="xs" data-min="0" data-max="5" data-step="0.1" />' +
     
-    // '<div class="stars">'+
-    // //'<form action="">'+
-    // '<input class="star star-5" id="star-5" type="radio" name="star"/>'+
-    // '<label class="star star-5" for="star-5"></label>'+
-    // '<input class="star star-4" id="star-4" type="radio" name="star"/>'+
-    // '<label class="star star-4" for="star-4"></label>'+
-    // '<input class="star star-3" id="star-3" type="radio" name="star"/>'+
-    // '<label class="star star-3" for="star-3"></label>'+
-    // '<input class="star star-2" id="star-2" type="radio" name="star"/>'+
-    // '<label class="star star-2" for="star-2"></label>'+
-    // '<input class="star star-1" id="star-1" type="radio" name="star"/>'+
-    // '<label class="star star-1" for="star-1"></label>'+
-    // //'</form>'+
-    // '</div>'+
-
-		'<p><b>Celdas disponibles: </b>'+parking.available_slots+'</p>'+
-		'<p><b>Teléfono: </b>'+parking.phone_number+'</p>'+
-		'<p><b>Dirección: </b>'+parking.address+'</p>'+
-		'<p><b>Servicios: </b>'+parking.services+'</p>'+
-		'<p><b>Horario: </b>'+parking.schedule+'</p>'+
-		'<div>'+
-		'<button data-parking-lat='+parking.latitude+' data-parking-lng='+parking.longitude+' class="col-md-4 btn btn-default" onclick="route(this)">Ruta</button>'+
-		'<a class="col-md-4 btn btn-default" href="/parking/detail/'+parking.id+'">Detalle</a>'+
-  		'<button data-parking-id='+parking.id +' class="col-md-4 btn btn-default" onclick="checkIn(this)">Estacionar</button>'+
-		'</div>'+
+        '<p><b>Rating: </b>'+parking.rating+'</p>'+
+    		'<p><b>Celdas disponibles: </b>'+parking.available_slots+'</p>'+
+    		'<p><b>Teléfono: </b>'+parking.phone_number+'</p>'+
+    		'<p><b>Dirección: </b>'+parking.address+'</p>'+
+    		'<p><b>Servicios: </b>'+parking.services+'</p>'+
+    		'<p><b>Horario: </b>'+parking.schedule+'</p>'+
+    		'<div>'+
+    		'<button data-parking-lat='+parking.latitude+' data-parking-lng='+parking.longitude+' class="col-md-4 btn btn-default" onclick="route(this)">Ruta</button>'+
+    		'<a class="col-md-4 btn btn-default" href="/parking/detail/'+parking.id+'">Detalle</a>'+
+      		'<button data-parking-id='+parking.id +' class="col-md-4 btn btn-default" onclick="checkIn(this)">Estacionar</button>'+
+    		'</div>'+
         '</div>'+
-        '</div>' 
-    //     + '<script type="text/javascript">' +
-    //   '$(function() {' +
-    //     '$(".rating").rating({ displayOnly: true });'+
-    //   '});'+
-    // '</script>'
-    ;
-
+        '</div>';    
 	return content;
 }
 

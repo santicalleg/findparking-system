@@ -5,6 +5,12 @@
 @section('content')
 
 <div>
+	<fieldset>
+		<label>Calificación</label>
+		<input id="parking-rating" type="text" class="rating-loading"
+        value="{{ $parking->rating }}" data-size="xs" data-min="0" data-max="5" />
+	</fieldset>
+
 	<fieldset class="form-group">
 		<label>Dirección</label>
 		<div>
@@ -38,7 +44,7 @@
 	<form method="POST">
 		<fieldset class="form-group">
 			<h3>Califica este parqueadero</h3>
-			<input id="input-id" type="text" class="rating" value="2" 
+			<input id="user-rating" type="text" class="rating-loading" 
 				data-size="xs" data-min="0" data-max="5" data-step="1" />
 
 			<label for="comment">Deja tu comentario</label>
@@ -54,7 +60,8 @@
 
 <script type="text/javascript">
 	$(function() {
-		$("#input-id").rating();
+		$("#user-rating").rating();
+		$("#parking-rating").rating({ displayOnly: true });
 	});
 </script>
 

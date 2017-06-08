@@ -5,6 +5,7 @@ namespace findparking\Http\Controllers;
 use Session;
 use Exception;
 use findparking\Slot;
+use findparking\Vehicle_Type;
 use Illuminate\Http\Request;
 
 class SlotController extends Controller
@@ -18,7 +19,8 @@ class SlotController extends Controller
 
     public function create($id)
     {
-    	return view('slot/create', compact('id'));
+        $types = Vehicle_Type::all(['vehicle_type_name', 'id']);
+    	return view('slot/create', compact('id', 'types'));
     }
 
     public function store(Request $request)
@@ -26,7 +28,8 @@ class SlotController extends Controller
     	$this->validate($request, [
 			'slot_name' => 'required|max:200',
             'vehicle_id' => 'max:6',
-			'parking_id' => 'required|numeric|min:1'
+			'parking_id' => 'required|numeric|min:1',
+            'vehicle_type_id' => 'required|min:1',
 		]);
 
 		try
@@ -50,15 +53,17 @@ class SlotController extends Controller
     public function edit($id)
     {
     	$slot = Slot::find($id);
+        $types = Vehicle_Type::all(['vehicle_type_name', 'id']);
 
-    	return view('slot/edit', compact('slot'));
+    	return view('slot/edit', compact('slot', 'types'));
     }
 
     public function update(Request $request, $id)
     {
     	$this->validate($request, [
 			'slot_name' => 'required|max:200',
-            'vehicle_id' => 'max:6'
+            'vehicle_id' => 'max:6',
+            'vehicle_type_id' => 'required|min:1',
 		]);
 
 		try
@@ -67,6 +72,7 @@ class SlotController extends Controller
 
 			$slot->slot_name = $request->input('slot_name');
             $slot->vehicle_id = $request->input('vehicle_id');
+            $slot->vehicle_type_id = $request->input('vehicle_type_id');
 			$slot->save();
 
     		Session::flash('message', 'Se ha actualizado satisfactoriamente!');

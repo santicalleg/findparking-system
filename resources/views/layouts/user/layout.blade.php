@@ -26,6 +26,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link href="{{ asset('/bower_components/admin-lte/dist/css/skins/skin-blue.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/css/app.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('/css/rating.css') }}">
+    <link href="{{ asset('/css/bootstrap-star-rating/star-rating.min.css') }}" 
+            media="all" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -72,14 +74,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <!-- REQUIRED JS SCRIPTS 
 @yield('scripts')-->
 <!-- jQuery 2.1.3 -->
-<script src="{{ asset ("/bower_components/admin-lte/plugins/jQuery/jquery-2.2.3.min.js") }}"></script>
+<script src="{{ asset ('/bower_components/admin-lte/plugins/jQuery/jquery-2.2.3.min.js') }}"></script>
 <!-- Bootstrap 3.3.2 JS -->
-<script src="{{ asset ("/bower_components/admin-lte/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
+<script src="{{ asset ('/bower_components/admin-lte/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
-<script src="{{ asset ("/bower_components/admin-lte/dist/js/app.min.js") }}" type="text/javascript"></script>
-<script src="{{ asset ("/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js") }}"></script>
-<script src="{{ asset ("/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.min.js") }}"></script>
-
+<script src="{{ asset ('/bower_components/admin-lte/dist/js/app.min.js') }}" type="text/javascript"></script>
+<script src="{{ asset ('/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset ('/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
+<script src="{{ asset ('/js/bootstrap-star-rating/star-rating.js') }}" type="text/javascript"></script>
 @yield('scripts')
 
 {{-- <script>

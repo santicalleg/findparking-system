@@ -41,7 +41,7 @@
 </div>
 
 <div>
-	<form method="POST">
+	<form id="rate" action="#">
 		<fieldset class="form-group">
 			<h3>Califica este parqueadero</h3>
 			<input id="user-rating" type="text" class="rating-loading" 
@@ -49,8 +49,11 @@
 
 			<label for="comment">Deja tu comentario</label>
 			<textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
-			<input type="hidden" name="parking_id" value="{{ $parking->id }}">
+			<input type="hidden" id="parking_id" name="parking_id" value="{{ $parking->id }}">
 		</fieldset>
+
+		<a href="{{ route('checkin.index')}}" class="btn btn-default">Cancelar</a>
+		<button class="btn btn-primary" type="submit">Enviar</button>
 	</form>
 </div>
 
@@ -58,11 +61,6 @@
 
 @section('scripts')
 
-<script type="text/javascript">
-	$(function() {
-		$("#user-rating").rating();
-		$("#parking-rating").rating({ displayOnly: true });
-	});
-</script>
+<script type="text/javascript" src="{{ asset ('/js/rating.js') }}"></script>
 
 @endsection

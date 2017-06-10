@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::post('/checkin/store', 'CheckinController@store')->name('checkin.store');
 	Route::post('/checkout/store', 'CheckoutController@store')->name('checkout.store');
 
+	/*Vehicle*/
 	Route::get('/vehicle', 'VehicleController@index')->name('vehicle.index');
 
 	Route::get('/vehicle/create', 'VehicleController@create')->name('vehicle.create');
@@ -37,6 +38,12 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::put('/vehicle/update/{id}', 'VehicleController@update')->where('id', '[0-9]+')->name('vehicle.update');
 
 	Route::delete('/vehicle/destroy/{id}', 'VehicleController@destroy')->where('id', '[0-9]+')->name('vehicle.destroy');
+
+	/*Rating*/
+	Route::get('/rating/getByUser', 'RatingController@getByUser')->name('rating.getByUser');
+
+	Route::post('/rating/store', 'RatingController@store')->name('rating.store');
+	Route::put('/vehicle/update', 'RatingController@update')->name('rating.update');
 
 	/*Parking*/
 	Route::get('/parking/getAll', 'ParkingController@getAll')->name('parking.getAll');

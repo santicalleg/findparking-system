@@ -41,7 +41,7 @@
 </div>
 
 <div>
-	<form id="rate" action="#">
+	<!--<form id="rate" action="#">-->
 		<fieldset class="form-group">
 			<h3>Califica este parqueadero</h3>
 			<input id="user-rating" type="text" class="rating-loading" 
@@ -50,11 +50,12 @@
 			<label for="comment">Deja tu comentario</label>
 			<textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
 			<input type="hidden" id="parking_id" name="parking_id" value="{{ $parking->id }}">
+			<intput type="hidden" id="id" name="id" value="0"></intput>
 		</fieldset>
 
 		<a href="{{ route('checkin.index')}}" class="btn btn-default">Cancelar</a>
-		<button class="btn btn-primary" type="submit">Enviar</button>
-	</form>
+		<button id="send" class="btn btn-primary" type="submit">Enviar</button>
+	<!--</form>-->
 </div>
 
 @endsection

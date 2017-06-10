@@ -43,7 +43,7 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/rating/getByUser', 'RatingController@getByUser')->name('rating.getByUser');
 
 	Route::post('/rating/store', 'RatingController@store')->name('rating.store');
-	Route::put('/vehicle/update', 'RatingController@update')->name('rating.update');
+	Route::put('/rating/update', 'RatingController@update')->name('rating.update');
 
 	/*Parking*/
 	Route::get('/parking/getAll', 'ParkingController@getAll')->name('parking.getAll');

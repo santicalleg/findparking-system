@@ -6,7 +6,9 @@ use Log;
 use Session;
 use Exception;
 use findparking\Rating;
+use findparking\Parking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class RatingController extends Controller
@@ -21,15 +23,11 @@ class RatingController extends Controller
 	public function getByUser() 
 	{
 		$rating = Rating::where('user_id', Auth::user()->id)
-					->firstOrFail();
-		if ($rating) 
+					->first();
+		if (!$rating) 
 		{
-			Log::info('rating not empty');
-			Log::info($rating->comment);
-		}
-		else 
-		{
-			Log::info('rating empty');
+			//Log::info('rating not empty');
+			$rating = new Rating;
 		}
 
 		return $rating->toJson();
@@ -50,7 +48,7 @@ class RatingController extends Controller
 
     	$rating->save();
 
-		updateRating($data->parking_id);
+		$this->updateRating($rating->parking_id);
 
     	return $rating->toJson();
     }
@@ -65,27 +63,28 @@ class RatingController extends Controller
 
 		$user = Auth::user();
 		$data = $request->all();
-		$rating = Rating::find($data->id);
+		$rating = Rating::find($request->input('id'));
 
 		//TODO: validate if the authenticated user is the rating owner
-		$rating->value = $data->value;
-		$rating->comment = $data->comment;
+		$rating->value = $request->input('value');
+		$rating->comment = $request->input('comment');
 
 		$rating->save();
 
-		updateRating($data->parking_id);
+		$this->updateRating($rating->parking_id);
 
 		return $rating->toJson();
     }
 
 	private function updateRating($parking_id)
 	{
+		Log::info('updateRating');
 		//Calculate avg parking rating
 		$avg = DB::table('rating')
 						->where('parking_id', $parking_id)
 						->avg('value');
 
-		$parking = Parking::find($id);
+		$parking = Parking::find($parking_id);
 
 		$parking->rating = $avg;
 

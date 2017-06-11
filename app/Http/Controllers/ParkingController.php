@@ -7,6 +7,7 @@ use Exception;
 use findparking\Slot;
 use findparking\Parking;
 use Illuminate\Http\Request;
+use findparking\Vehicle_Type;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -82,17 +83,23 @@ class ParkingController extends Controller
     		$parking->save();
             
 			$slots = [];
+            
+            $car_vehicle_type = 
+                    Vehicle_Type::where('vehicle_type_name', 'LIKE', '%carro%')->first();
+            $motorcycle_vehicle_type = 
+                    Vehicle_Type::where('vehicle_type_name', 'LIKE', '%moto%')->first();
+
             for ($i=1; $i <=$cars_quantity ; $i++) {
                 $slot = new Slot;
                 $slot->slot_name = "A" . $i;
-                $slot->vehicle_type_id = 1;
+                $slot->vehicle_type_id = $car_vehicle_type->id;
 				$slots[] = $slot;
             }
 
             for ($i=1; $i <=$motorcycles_quantity ; $i++) {
                 $slot = new Slot;
                 $slot->slot_name = "A" . $i;
-                $slot->vehicle_type_id = 2;
+                $slot->vehicle_type_id = $motorcycle_vehicle_type->id;
                 $slots[] = $slot;
             }
 

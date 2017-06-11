@@ -63,7 +63,9 @@ function getUserRating() {
 function onSuccess(data, status, jqXHR) {
     console.log("success");
     var result = jQuery.parseJSON(data);
-    $('#parking-rating').rating('update', result.avg);
+    var avg = parseFloat(result.avg).toFixed(1);
+    $('#parking-rating').rating('update', avg);
+    $('#rating').html(avg);
     $('#id').val(result.id);
 
     $('#success-message').removeClass('hidden');

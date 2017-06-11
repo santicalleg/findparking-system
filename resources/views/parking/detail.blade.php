@@ -7,7 +7,7 @@
 <div>
 	<fieldset>
 		<label>Calificación</label>
-		<p>{{ $parking->rating }}</p>
+		<p id="rating">{{ $parking->rating }}</p>
 		<input id="parking-rating" type="text" class="rating-loading"
         value="{{ $parking->rating }}" data-size="xs" data-min="0" data-max="5" />
 	</fieldset>

@@ -40,7 +40,10 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::delete('/vehicle/destroy/{id}', 'VehicleController@destroy')->where('id', '[0-9]+')->name('vehicle.destroy');
 
 	/*Rating*/
-	Route::get('/rating/getByUser', 'RatingController@getByUser')->name('rating.getByUser');
+	Route::get('/rating/getByUserAndParking/{parking_id}',
+	'RatingController@getByUserAndParking')
+	->where('parking_id', '[0-9]+')
+	->name('rating.getByUserAndParking');
 
 	Route::post('/rating/store', 'RatingController@store')->name('rating.store');
 	Route::put('/rating/update', 'RatingController@update')->name('rating.update');

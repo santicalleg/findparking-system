@@ -7,6 +7,7 @@
 <div>
 	<fieldset>
 		<label>Calificación</label>
+		<p>{{ $parking->rating }}</p>
 		<input id="parking-rating" type="text" class="rating-loading"
         value="{{ $parking->rating }}" data-size="xs" data-min="0" data-max="5" />
 	</fieldset>
@@ -41,21 +42,24 @@
 </div>
 
 <div>
-	<!--<form id="rate" action="#">-->
-		<fieldset class="form-group">
-			<h3>Califica este parqueadero</h3>
-			<input id="user-rating" type="text" class="rating-loading" 
-				data-size="xs" data-min="0" data-max="5" data-step="1" />
+	<div id="success-message" class="alert alert-info hidden">
+		Su comentario se ha guardado exitosamente
+	</div>
+	<div id="error-message" class="alert alert-danger hidden"></div>
 
-			<label for="comment">Deja tu comentario</label>
-			<textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
-			<input type="hidden" id="parking_id" name="parking_id" value="{{ $parking->id }}">
-			<intput type="hidden" id="id" name="id" value="0"></intput>
-		</fieldset>
+	<fieldset class="form-group">
+		<h3>Califica este parqueadero</h3>
+		<input id="user-rating" type="text" class="rating-loading" 
+			data-size="xs" data-min="0" data-max="5" data-step="1" />
 
-		<a href="{{ route('checkin.index')}}" class="btn btn-default">Cancelar</a>
-		<button id="send" class="btn btn-primary" type="submit">Enviar</button>
-	<!--</form>-->
+		<label for="comment">Deja tu comentario</label>
+		<textarea class="form-control" rows="5" id="comment" name="comment"></textarea>
+		<input type="hidden" id="parking_id" name="parking_id" value="{{ $parking->id }}">
+		<intput type="hidden" id="id" name="id" value="0"></intput>
+	</fieldset>
+
+	<a href="{{ route('checkin.index')}}" class="btn btn-default">Cancelar</a>
+	<button id="send" class="btn btn-primary" type="submit">Enviar</button>
 </div>
 
 @endsection

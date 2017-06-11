@@ -1,5 +1,8 @@
+var parking_id = 0;
+
 $(function(){
 	$("#parking-rating").rating({ displayOnly: true });
+    parking_id = $("#parking_id").val();
 
     getUserRating();
 
@@ -7,7 +10,7 @@ $(function(){
         var id = $("#id").val();
         var rating = $("#user-rating").val();
         var comment = $("#comment").val();
-        var parking_id = $("#parking_id").val();
+        //var parking_id = $("#parking_id").val();
 
         var data = { 
             "value" : parseInt(rating), 
@@ -25,19 +28,8 @@ $(function(){
                 url: '/rating/store',
                 contentType: 'application/json',
                 data: JSON.stringify(data),
-                success: function(data, status, jqXHR) {
-                    console.log("success");
-                    $("#parking-rating").rating("update", data.avg);
-                },
-                error: function(textStatus, errorThrown) {
-                    console.log("error: " + textStatus.responseText);
-                    // if (textStatus.status >= 400 || textStatus.status < 500) {
-                    //     $(".modal-title").html("Advertencia");
-                    // }
-                    // else {
-                    //     $(".modal-title").html("Error");
-                    // }
-                }
+                success: onSuccess,
+                error: onError
 	        });
         }
         else {
@@ -49,28 +41,35 @@ $(function(){
                 url: '/rating/update',
                 contentType: 'application/json',
                 data: JSON.stringify(data),
-                success: function(data, status, jqXHR) {
-                    console.log("success");
-                    $("#parking-rating").rating("update", data.avg);
-                },
-                error: function(textStatus, errorThrown) {
-                    console.log("error: " + textStatus.responseText);
-                }
+                success: onSuccess,
+                error: onError
 	        });
         }        
     });
 });
 
 function getUserRating() {
+    var uri = '/rating/getByUserAndParking/' + parking_id;
+
     $.ajax({
 		type: 'GET',
-  		url: '/rating/getByUser',
+  		url: '/rating/getByUserAndParking/' + parking_id,
   		contentType: 'application/json',
-  		success: function(data, status, jqXHR) {
-  			onGetUserRatingSuccess(data, status, jqXHR);
-  		},
+        success: onGetUserRatingSuccess,
   		error: onError
 	});
+}
+
+function onSuccess(data, status, jqXHR) {
+    console.log("success");
+    var result = jQuery.parseJSON(data);
+    $('#parking-rating').rating('update', result.avg);
+    $('#id').val(result.id);
+
+    $('#success-message').removeClass('hidden');
+    setTimeout(function () { 
+        $('#success-message').addClass('hidden');
+    }, 5000);
 }
 
 function onGetUserRatingSuccess(data, status, jqXHR) {
@@ -82,9 +81,28 @@ function onGetUserRatingSuccess(data, status, jqXHR) {
         $("#id").val(data.id);
     }
 
-    $("#user-rating").rating();
+    $("#user-rating").rating({language: 'es'});
 }
 
 function onError(textStatus, errorThrown) {
 	console.log(errorThrown);
+    $('#error-message').removeClass('hidden');
+
+    if (textStatus.status >= 400 || textStatus.status < 500) {
+        if (textStatus.status == 422) {
+            var validation = textStatus.responseJSON;
+            $("#error-message").html(validation.value);
+        }
+        else {
+            $("#error-message").html(textStatus.responseText);
+        }
+    }
+
+    setTimeout(function () { 
+        $('#error-message').addClass('hidden');
+    }, 7000);
+    // else {
+    //     $(".modal-title").html("Error");
+    // 
+    //}
 }

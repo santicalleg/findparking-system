@@ -81,6 +81,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset ('/bower_components/admin-lte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset ('/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.min.js') }}"></script>
 <script src="{{ asset ('/js/bootstrap-star-rating/star-rating.js') }}" type="text/javascript"></script>
+<script src="{{ asset ('/js/bootstrap-star-rating/locales/es.js') }}"></script>
 @yield('scripts')
 
 {{-- <script>

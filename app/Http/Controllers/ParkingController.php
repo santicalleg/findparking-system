@@ -187,26 +187,7 @@ class ParkingController extends Controller
 
                 $slot->save();
             }
-            // if ($parking->slots()->count() != $quantity && $quantity > 0) {
-            //     $parking->slots()->delete();
-
-            //     for ($i=1; $i <=$cars_quantity ; $i++) {
-            //         $slot = new Slot;
-            //         $slot->slot_name = "A" . $i;
-            //         $slot->parking_id = $parking->id;
-
-            //         $slot->save();
-            //     }
-
-            //     for ($i=1; $i <=$motorcycles_quantity ; $i++) {
-            //         $slot = new Slot;
-            //         $slot->slot_name = "A" . $i;
-            //         $slot->parking_id = $parking->id;
-
-            //         $slot->save();
-            //     }
-            // }
-
+            
     		Session::flash('message', 'Se ha actualizado satisfactoriamente!');
 
     		return redirect()->route('parking.index');

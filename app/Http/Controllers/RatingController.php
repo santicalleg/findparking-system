@@ -20,10 +20,9 @@ class RatingController extends Controller
 		return $rating->toJson();
 	}
 
-	public function getByUser() 
+	public function getByUserAndParking($parking_id)
 	{
-		$rating = Rating::where('user_id', Auth::user()->id)
-					->first();
+		$rating = $this->findByUserAndParking(Auth::user()->id, $parking_id);
 		if (!$rating) 
 		{
 			//Log::info('rating not empty');
@@ -37,7 +36,7 @@ class RatingController extends Controller
     {
     	$this->validate($request, [
 			'value' => 'required|min:1',
-            'parking_id' => 'max:6'
+            'parking_id' => 'required|min:1'
 		]);
 
     	$user = Auth::user();
@@ -46,13 +45,24 @@ class RatingController extends Controller
     	$rating = new Rating($data);
     	$rating->user_id = $user->id;
 
+    	//validate if already exists an rating from the current user,
+    	//updates the last rating from sended parking.
+    	$foundRating = $this->findByUserAndParking($user->id, $rating->parking_id);
+
+    	if (!empty($foundRating))
+    	{
+    		$foundRating->value = $rating->value;
+    		$foundRating->comment = $rating->comment;
+    		$rating = $foundRating;
+    	}
+
     	$rating->save();
 
 		$avg = $this->updateRating($rating->parking_id);
 
-		$result = $this->buildRatingResponse($rating, $avg);
-
-    	return $result->toArray()->toJson();
+		$json = $this->buildRatingResponse($rating, $avg);
+		$result = json_encode($json);
+		return $result;
     }
 
     public function update(Request $request)
@@ -60,14 +70,21 @@ class RatingController extends Controller
     	$this->validate($request, [
     		'id' => 'required|min:1',
 			'value' => 'required|min:1',
-            'parking_id' => 'max:6'
+            'parking_id' => 'required|min:1'
 		]);
 
 		$user = Auth::user();
-		$data = $request->all();
 		$rating = Rating::find($request->input('id'));
 
-		//TODO: validate if the authenticated user is the rating owner
+		//validate if the authenticated user is the rating owner
+		if ($user->id !== $rating->user_id)
+		{
+			return response(
+				'No está autorizado para actualizar las califcaciones de otros usuarios', 
+				403
+			);
+		}
+
 		$rating->value = $request->input('value');
 		$rating->comment = $request->input('comment');
 
@@ -109,5 +126,14 @@ class RatingController extends Controller
 		];
 
 		return $result;
+	}
+
+	private function findByUserAndParking($user_id, $parking_id)
+	{
+		$rating = Rating::where('user_id', $user_id)
+					->where('parking_id', $parking_id)
+					->first();
+
+		return $rating;
 	}
 }

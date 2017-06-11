@@ -29,6 +29,7 @@ class AddSlotVechicleTypeColumn extends Migration
     {
         //
         Schema::table('slot', function(Blueprint $table) {
+            $table->dropForeign('slot_vehicle_type_id_foreign');
             $table->dropColumn('vehicle_type_id');
         });
     }

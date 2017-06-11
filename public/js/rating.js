@@ -1,5 +1,4 @@
 $(function(){
-    // $("#user-rating").rating();
 	$("#parking-rating").rating({ displayOnly: true });
 
     getUserRating();
@@ -28,6 +27,7 @@ $(function(){
                 data: JSON.stringify(data),
                 success: function(data, status, jqXHR) {
                     console.log("success");
+                    $("#parking-rating").rating("update", data.avg);
                 },
                 error: function(textStatus, errorThrown) {
                     console.log("error: " + textStatus.responseText);
@@ -41,8 +41,6 @@ $(function(){
 	        });
         }
         else {
-            //data['_method'] = 'PUT';
-
             $.ajax({
                 type: 'PUT',
                 headers: {
@@ -53,17 +51,10 @@ $(function(){
                 data: JSON.stringify(data),
                 success: function(data, status, jqXHR) {
                     console.log("success");
+                    $("#parking-rating").rating("update", data.avg);
                 },
                 error: function(textStatus, errorThrown) {
                     console.log("error: " + textStatus.responseText);
-                    // if (textStatus.status >= 400 || textStatus.status < 500) {
-                    //     $(".modal-title").html("Advertencia");
-                    // }
-                    // else {
-                    //     $(".modal-title").html("Error");
-                    // }
-                    // $("#modal-body-message").html(textStatus.responseText);
-                    // $("#windowModal").modal();
                 }
 	        });
         }        

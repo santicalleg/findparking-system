@@ -48,9 +48,11 @@ class RatingController extends Controller
 
     	$rating->save();
 
-		$this->updateRating($rating->parking_id);
+		$avg = $this->updateRating($rating->parking_id);
 
-    	return $rating->toJson();
+		$result = $this->buildRatingResponse($rating, $avg);
+
+    	return $result->toArray()->toJson();
     }
 
     public function update(Request $request)
@@ -71,9 +73,11 @@ class RatingController extends Controller
 
 		$rating->save();
 
-		$this->updateRating($rating->parking_id);
+		$avg = $this->updateRating($rating->parking_id);
 
-		return $rating->toJson();
+		$json = $this->buildRatingResponse($rating, $avg);
+		$result = json_encode($json);
+		return $result;
     }
 
 	private function updateRating($parking_id)
@@ -89,5 +93,21 @@ class RatingController extends Controller
 		$parking->rating = $avg;
 
 		$parking->save();
+
+		return $avg;
+	}
+
+	private function buildRatingResponse($rating, $avg)
+	{
+		$result = (object) [
+			'id' => $rating->id, 
+			'value' => $rating->value, 
+			'comment' => $rating->comment, 
+			'user_id' => $rating->user_id, 
+			'parking_id' => $rating->parking_id,
+			'avg' => $avg
+		];
+
+		return $result;
 	}
 }

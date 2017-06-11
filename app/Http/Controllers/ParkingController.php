@@ -170,11 +170,16 @@ class ParkingController extends Controller
 
             $parking->slots()->delete();
 
+            $car_vehicle_type = 
+                    Vehicle_Type::where('vehicle_type_name', 'LIKE', '%carro%')->first();
+            $motorcycle_vehicle_type = 
+                    Vehicle_Type::where('vehicle_type_name', 'LIKE', '%moto%')->first();
+
             for ($i=1; $i <=$cars_quantity ; $i++) {
                 $slot = new Slot;
                 $slot->slot_name = "A" . $i;
                 $slot->parking_id = $parking->id;
-                $slot->vehicle_type_id = 1;
+                $slot->vehicle_type_id = $car_vehicle_type->id;
 
                 $slot->save();
             }
@@ -183,7 +188,7 @@ class ParkingController extends Controller
                 $slot = new Slot;
                 $slot->slot_name = "A" . $i;
                 $slot->parking_id = $parking->id;
-                $slot->vehicle_type_id = 2;
+                $slot->vehicle_type_id = $motorcycle_vehicle_type->id;
 
                 $slot->save();
             }

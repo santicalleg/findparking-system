@@ -16,6 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Ionicons -->
     <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css">
     <!-- Theme style -->
+    <link href="{{ asset('/css/app.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/bower_components/admin-lte/dist/css/AdminLTE.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{ asset('/bower_components/admin-lte/plugins/datatables/dataTables.bootstrap.min.css') }}">
     

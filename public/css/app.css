@@ -1,3 +1,12 @@
+.social-icons {
+  font-size: 20px;
+}
+
+.social-icons a {
+  padding: 0 10px;
+  color: #444;
+}
+
 @media (max-width: 600px) {
   #mapaNodo {
     width: 300px;

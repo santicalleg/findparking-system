@@ -1,10 +1,21 @@
-.social-icons {
+.social-icons,
+.header-social-icons {
   font-size: 20px;
 }
 
 .social-icons a {
   padding: 0 10px;
   color: #444;
+}
+
+.header-social-icons {
+	float: left;
+	padding: 10px;
+}
+
+.header-social-icons a {
+	padding: 10px;
+  	color: #fff;
 }
 
 @media (max-width: 600px) {

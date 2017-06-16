@@ -10,6 +10,17 @@
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
+        <div class="header-social-icons">
+            <a target="_blank" href="https://www.facebook.com/">
+                <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a target="_blank" href="https://twitter.com/">
+                <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a target="_blank" href="https://www.instagram.com">
+                <i class="fa fa-instagram" aria-hidden="true"></i>
+            </a>
+        </div>
         <!-- Navbar Right Menu -->
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">

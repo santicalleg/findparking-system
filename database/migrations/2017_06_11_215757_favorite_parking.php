@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddRatingParkingColumn extends Migration
+class FavoriteParking extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddRatingParkingColumn extends Migration
     public function up()
     {
         //
-        Schema::table('parking', function(Blueprint $table) {
-            $table->decimal('rating')->default(0);
+        Schema::table('rating', function(Blueprint $table) {
+            $table->boolean('isFavorite')->default(0);
         });
     }
 
@@ -27,8 +27,8 @@ class AddRatingParkingColumn extends Migration
     public function down()
     {
         //
-        Schema::table('parking', function(Blueprint $table) {
-            $table->dropColumn('rating');
+        Schema::table('rating', function(Blueprint $table) {
+            $table->dropColumn('isFavorite');
         });
     }
 }

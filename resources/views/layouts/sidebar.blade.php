@@ -40,6 +40,7 @@
             <!-- Optionally, you can add icons to the links -->
             {{-- <li class="active"><a href="{{ route('admin.dashboard') }}"><span>Home</span></a></li> --}}
             <li class="{{ $parking_class_active or "" }}"><a href="{{ route('parking.index') }}"><span>Parqueaderos</span></a></li>
+            <li><a href="admin/aboutus"><span>Acerca de</span></a></li>
             {{-- <li class="treeview">
                 <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">

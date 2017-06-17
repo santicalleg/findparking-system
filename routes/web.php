@@ -51,6 +51,10 @@ Route::group(['middleware' => ['auth']], function() {
 	/*Parking*/
 	Route::get('/parking/getAll', 'ParkingController@getAll')->name('parking.getAll');
 	Route::get('/parking/detail/{id}', 'ParkingController@detail')->where('id', '[0-9]+')->name('parking.detail');
+
+	Route::get('/aboutus', function() {
+		return view('/aboutus/index');
+	});
 });
 
 Route::prefix('admin')->group(function() {
@@ -103,4 +107,8 @@ Route::group(['middleware' => ['auth:admin'], 'prefix' => 'admin'], function() {
 	Route::put('/slot/update/{id}', 'SlotController@update')->where('id', '[0-9]+')->name('slot.update');
 
 	Route::delete('/slot/destroy/{id}', 'SlotController@destroy')->where('id', '[0-9]+')->name('slot.destroy');
+
+	Route::get('/aboutus', function() {
+		return view('/aboutus/admin-index');
+	});
 });

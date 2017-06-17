@@ -49,6 +49,7 @@
                     <span>Mis vehículos</span>
                 </a>
             </li>
+            <li><a href="/aboutus"><span>Acerca de</span></a></li>
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

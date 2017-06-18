@@ -10,8 +10,7 @@ $(function(){
         var id = $("#id").val();
         var rating = $("#user-rating").val();
         var comment = $("#comment").val();
-        //var parking_id = $("#parking_id").val();
-
+        
         var data = { 
             "value" : parseInt(rating), 
             "comment" : comment,
@@ -46,6 +45,44 @@ $(function(){
 	        });
         }        
     });
+
+    $("#favorite").click(function(e){
+        var isFavorite = this.value == "1";
+        var id = $("#id").val();
+
+        var data = { 
+            "id" : id,
+            "isFavorite" : !isFavorite,
+            "parking_id" : parking_id
+        };
+
+        if (!id || id == 0) {
+            $.ajax({
+                type: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/favorite/store',
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: onFavoriteSuccess,
+                error: onError
+            });
+        }
+        else {
+            $.ajax({
+                type: 'PUT',
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/favorite/update/' + id,
+                contentType: 'application/json',
+                data: JSON.stringify(data),
+                success: onFavoriteSuccess,
+                error: onError
+            });
+        }
+    });
 });
 
 function getUserRating() {
@@ -74,6 +111,12 @@ function onSuccess(data, status, jqXHR) {
     }, 5000);
 }
 
+function onFavoriteSuccess(data, status, jqXHR) {
+    var result = parseInt(data);
+    $('#favorite').val(result);
+    changeFavoriteButton(result);
+}
+
 function onGetUserRatingSuccess(data, status, jqXHR) {
     var data = jQuery.parseJSON(data);
 
@@ -81,9 +124,23 @@ function onGetUserRatingSuccess(data, status, jqXHR) {
         $("#user-rating").val(data.value);
         $("#comment").val(data.comment);
         $("#id").val(data.id);
+        $("#favorite").val(data.isFavorite);
+        changeFavoriteButton(data.isFavorite);
     }
 
     $("#user-rating").rating({language: 'es'});
+}
+
+function changeFavoriteButton(isFavorite) {
+    $('#favorite span').first().removeClass();
+    if (isFavorite && isFavorite === 1) {
+        $('#favorite span').first().addClass('fa fa-minus-circle');
+        $('#favorite span').last().text('Eliminar de favoritos');
+    }
+    else {
+        $('#favorite span').first().addClass('fa fa-plus-circle');
+        $('#favorite span').last().text('Agregar a favoritos');
+    }
 }
 
 function onError(textStatus, errorThrown) {
@@ -103,8 +160,4 @@ function onError(textStatus, errorThrown) {
     setTimeout(function () { 
         $('#error-message').addClass('hidden');
     }, 7000);
-    // else {
-    //     $(".modal-title").html("Error");
-    // 
-    //}
 }

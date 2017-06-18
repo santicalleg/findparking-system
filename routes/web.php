@@ -34,10 +34,13 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/vehicle/create', 'VehicleController@create')->name('vehicle.create');
 	Route::post('/vehicle/store', 'VehicleController@store')->name('vehicle.store');
 
-	Route::get('/vehicle/edit/{id}', 'VehicleController@edit')->where('id', '[0-9]+')->name('vehicle.edit');
-	Route::put('/vehicle/update/{id}', 'VehicleController@update')->where('id', '[0-9]+')->name('vehicle.update');
+	Route::get('/vehicle/edit/{id}', 'VehicleController@edit')->where('id', '[0-9]+')
+				->name('vehicle.edit');
+	Route::put('/vehicle/update/{id}', 'VehicleController@update')->where('id', '[0-9]+')
+				->name('vehicle.update');
 
-	Route::delete('/vehicle/destroy/{id}', 'VehicleController@destroy')->where('id', '[0-9]+')->name('vehicle.destroy');
+	Route::delete('/vehicle/destroy/{id}', 'VehicleController@destroy')->where('id', '[0-9]+')
+				->name('vehicle.destroy');
 
 	/*Rating*/
 	Route::get('/rating/getByUserAndParking/{parking_id}',
@@ -54,6 +57,10 @@ Route::group(['middleware' => ['auth']], function() {
 
 	/*Favorite*/
 	Route::get('/favorite', 'FavoriteController@index')->name('favorite.index');
+
+	Route::post('/favorite/store', 'FavoriteController@store')->name('favorite.store');
+	Route::put('/favorite/update/{id}', 'FavoriteController@update')->where('id', '[0-9]+')
+				->name('favorite.update');
 
 	Route::get('/aboutus', function() {
 		return view('/aboutus/index');

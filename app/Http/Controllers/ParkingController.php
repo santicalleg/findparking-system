@@ -35,10 +35,6 @@ class ParkingController extends Controller
 
     public function getAll()
     {
-        // $parkings = Parking::with(['slots' => function($query) {
-        //     $query->whereNull('vehicle_id');
-        // }])->get();
-
         $parkings = DB::table('parking')
                         ->join('slot', 'parking.id', '=', 'slot.parking_id')
                         ->select('parking.*', DB::raw('count(*) as available_slots'))

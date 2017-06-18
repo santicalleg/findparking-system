@@ -5,6 +5,18 @@
 @section('content')
 
 <div>
+	<div id="success-message" class="alert alert-info hidden">
+		Su comentario se ha guardado exitosamente
+	</div>
+	<div id="error-message" class="alert alert-danger hidden"></div>
+
+	<fieldset class="form-group">
+		<a id="favorite" href="#" class="btn btn-default" title="Agregar a favoritos" value="0">
+			<span class="fa fa-plus-circle"></span>
+			<span>Agregar a favoritos</span>
+		</a>
+	</fieldset>
+
 	<fieldset>
 		<label>Calificación</label>
 		<p id="rating">{{ $parking->rating }}</p>
@@ -42,11 +54,6 @@
 </div>
 
 <div>
-	<div id="success-message" class="alert alert-info hidden">
-		Su comentario se ha guardado exitosamente
-	</div>
-	<div id="error-message" class="alert alert-danger hidden"></div>
-
 	<fieldset class="form-group">
 		<h3>Califica este parqueadero</h3>
 		<input id="user-rating" type="text" class="rating-loading" 

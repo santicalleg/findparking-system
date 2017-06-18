@@ -13,6 +13,7 @@ class Rating extends Model
         'id', 
         'value',
         'comment',
+        'isFavorite',
         'user_id',
         'parking_id', 
     ];

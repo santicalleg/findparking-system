@@ -52,6 +52,9 @@ Route::group(['middleware' => ['auth']], function() {
 	Route::get('/parking/getAll', 'ParkingController@getAll')->name('parking.getAll');
 	Route::get('/parking/detail/{id}', 'ParkingController@detail')->where('id', '[0-9]+')->name('parking.detail');
 
+	/*Favorite*/
+	Route::get('/favorite', 'FavoriteController@index')->name('favorite.index');
+
 	Route::get('/aboutus', function() {
 		return view('/aboutus/index');
 	});

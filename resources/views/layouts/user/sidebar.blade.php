@@ -44,6 +44,11 @@
                     <span>Estacionar</span>
                 </a>
             </li>
+            <li class="{{ $favorite_class_active or "" }}">
+                <a href="{{ route('favorite.index') }}">
+                    <span>Favoritos</span>
+                </a>
+            </li>
             <li class="{{ $vehicle_class_active or "" }}">
                 <a href="{{ route('vehicle.index') }}">
                     <span>Mis vehículos</span>

@@ -33,4 +33,9 @@ class Parking extends Model
     {
         return $this->hasMany(Slot::class);
     }
+
+    public function ratings()
+    {
+        return $this->hasMany(Rating::class);
+    }
 }

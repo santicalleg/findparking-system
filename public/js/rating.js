@@ -2,6 +2,7 @@ var parking_id = 0;
 
 $(function(){
 	$("#parking-rating").rating({ displayOnly: true });
+    $(".users-rating").rating({ displayOnly: true });
     parking_id = $("#parking_id").val();
 
     getUserRating();

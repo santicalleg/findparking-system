@@ -5,6 +5,7 @@ namespace findparking\Http\Controllers;
 use Session;
 use Exception;
 use findparking\Slot;
+use findparking\Rating;
 use findparking\Parking;
 use Illuminate\Http\Request;
 use findparking\Vehicle_Type;
@@ -29,8 +30,9 @@ class ParkingController extends Controller
     public function detail($id)
     {
         $parking = Parking::find($id);
+        $ratings = Rating::where('parking_id', $id)->paginate(10);
 
-        return view('parking/detail', compact('parking'));
+        return view('parking/detail', compact('parking', 'ratings'));
     }
 
     public function getAll()

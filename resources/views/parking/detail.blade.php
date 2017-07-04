@@ -69,6 +69,35 @@
 	<button id="send" class="btn btn-primary" type="submit">Enviar</button>
 </div>
 
+<div>
+	<h3>Comentarios</h3>
+	<table id="grid" class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Usuario</th>
+                  <th>Calificación</th>
+                  <th>Comentario</th>
+                </tr>
+              </thead>
+              <tbody>
+			      @foreach ($ratings as $rating)
+                  <tr>
+                    <td>{{ $rating->user->name }}</td>
+                    <td>
+                    	<input class="users-rating" type="text" value="{{ $rating->value }}" 
+                    	data-size="xs" data-min="0" data-max="5"/>
+                    </td>
+                    <td>{{ $rating->comment }}</td>
+                    <td>
+                    </td>
+                    
+                  </tr>
+                @endforeach
+              </tbody>
+  </table>
+  {{ $ratings->links() }}
+</div>
+
 @endsection
 
 @section('scripts')
